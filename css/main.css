@@ -166,6 +166,14 @@ body {width: 92%; margin: 0 auto} /* Center page without wrapper */
   background-image: url('../images/back.jpg');
 }
 
+.fab{
+  margin: 10px;
+}
+
+.fab:hover{
+  cursor: pointer;
+}
+
 /* Header */
 #header{
   margin-bottom: 2em;
