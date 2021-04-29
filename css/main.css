@@ -163,7 +163,7 @@ body {width: 92%; margin: 0 auto} /* Center page without wrapper */
 /* Backgrounds */
 
 .bg-1{
-  background-image: url('../images/floor.jpg');
+  background-image: url('../images/back.jpg');
 }
 
 /* Header */
@@ -270,7 +270,12 @@ body {width: 92%; margin: 0 auto} /* Center page without wrapper */
   letter-spacing: 2px;
   margin-bottom: .3em;
 }
-.info h4, #header h4{
+
+#header h4{
+  color: #57449E;
+}
+
+.info h4{
   color: #999;
 }
 /* Contact */
@@ -623,6 +628,9 @@ footer{
 footer p{
   margin-bottom: 0px;
 }
+
+
+
 
 /* media Queries
 
