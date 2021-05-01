@@ -256,20 +256,7 @@ body {width: 92%; margin: 0 auto} /* Center page without wrapper */
 .info-wrap{
 
 }
-/* Photo */
-.photo{
-  float: left;
-  height: 200px;
-  width: 200px;
-  margin-right: 20px;
-  overflow: hidden;
-}
-.photo img{
- -webkit-border-radius: 4px;
- -moz-border-radius: 4px;
- border-radius: 4px;
- width: 100%;
-}
+
 .info{
 
 }
@@ -653,41 +640,77 @@ Change widths as necessary
 ------------------------------------------- */
 
 /* MOBILE PORTRAIT */
-@media (max-width: 989px) and (orientation:portrait){
-  body {
-
+@media only screen and (max-width: 1000px) and (orientation:portrait){
+  .photo{
+    text-align: center;
+    overflow: hidden;
   }
 
-  footer{
-    margin-top: 4em;
+  .photo img{
+
+    width: 80%;
   }
+
 }
 
 /* MOBILE LANDSCAPE */
 @media only screen and (min-width: 480px) {
-  body {
-
+  /* Photo */
+  .photo{
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin-right: 20px;
+    overflow: hidden;
   }
+  .photo img{
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   width: 100%;
+ }
 }
 
 /* SMALL TABLET */
 @media only screen and (min-width: 600px) {
-  body {
-
+  /* Photo */
+  .photo{
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin-right: 20px;
+    overflow: hidden;
   }
-  .etabs >li span{
-    display: block;
-  }
+  .photo img{
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   width: 100%;
+ }
+ .etabs >li span{
+  display: block;
+}
 }
 
 /* TABLET/NETBOOK */
 @media only screen and (min-width: 768px) { 
-  body {
-
+  /* Photo */
+  .photo{
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin-right: 20px;
+    overflow: hidden;
   }
+  .photo img{
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   width: 100%;
+ }
 
-  /* Sidebar */
-  .sidebar{
+ /* Sidebar */
+ .sidebar{
    padding-left: 20px;
    border-left: 1px solid #f1f1f1;
  }
@@ -709,15 +732,15 @@ Change widths as necessary
     display: inline;
   }
   .tab a i{
-  font-size: 16px;
-  margin-right: 6px;
-}
+    font-size: 16px;
+    margin-right: 6px;
+  }
   .tab a{
     padding: 10px 40px 10px 40px;
   }
-.tab a.active{
-  padding-top: 20px;
-}
+  .tab a.active{
+    padding-top: 20px;
+  }
   /* 3 COLUMN GRID */
   .g1 {width:31.333%}
   .g2 {width:64.667%;}
