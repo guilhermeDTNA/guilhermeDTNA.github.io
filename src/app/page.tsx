@@ -1,10 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import variables from '/src/assets/styles/globals.module.scss';
 
 export default function Home() {
   return (
     <main>
-      Hello, I love you
+      <h1 style={{ color: variables.primaryColor }}>Hello, Next.js!</h1>
     </main>
-  );
+  )
 }
