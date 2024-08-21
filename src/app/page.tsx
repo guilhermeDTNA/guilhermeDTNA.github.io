@@ -1,9 +1,11 @@
-import variables from '/src/assets/styles/globals.module.scss';
+import './styles.scss';
 
 export default function Home() {
   return (
     <main>
-      <h1 style={{ color: variables.primaryColor }}>Hello, Next.js!</h1>
+      <h1>TESTE açaí</h1>
+
+      <span>TESTE açaí</span>
     </main>
   )
 }
