@@ -1,0 +1,151 @@
+@use '../../styles/globals.scss' as global;
+
+.contrastToggle{
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    z-index: 1;
+    background-color: transparent !important;
+
+    @media screen and (min-width: 992px) {
+        top: 90px;
+    }
+
+    :global(.switch){
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 80px;
+        height: 35px;
+
+        &::before{
+            border: 7px solid transparent;
+            border-bottom-color: #4dbbc7;
+            content: "";
+            display: block;
+            position: absolute;
+            top: calc(100% - 44px);
+            width: 0;
+            height: 0;
+            z-index: 1;
+            -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+        }
+
+        input[type="checkbox"]{
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        :global(.slider){
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-transition: all .4s;
+            transition: all .4s;
+            background: rgba(163, 170, 234, .9);
+            border: 1px solid;
+            border-color: transparent;
+            padding: 0 5px;
+            box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .27);
+
+            &:global(.round){
+                border-radius: 34px;
+
+                &::before{
+                    position: absolute;
+                    content: "";
+                    bottom: 4px;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                    height: 70%;
+                    width: 24px;
+                    -webkit-transform: none !important;
+                    -ms-transform: none !important;
+                    transform: none !important;
+                    -webkit-transition: right .4s;
+                    transition: right .4s;
+                    border-radius: 50%;
+                }
+            }
+
+            :global(.svg-light){
+                position: absolute;
+                top: 5px;
+                bottom: 5px;
+                left: 5px;
+                background-color: transparent;
+
+                svg{
+                    height: 100%;
+                    width: auto;
+                    fill: global.$yellow;
+
+                    path{
+                        fill: global.$yellow;
+                    }
+                }
+            }
+
+            :global(.svg-dark){
+                position: absolute;
+                top: 5px;
+                bottom: 5px;
+                right: 5px;
+                -webkit-box-pack: end;
+                -webkit-justify-content: flex-end;
+                -ms-flex-pack: end;
+                justify-content: flex-end;
+                background-color: transparent;
+
+                svg{
+                    height: 100%;
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    :global(.switch){
+        :global(.slider.round)::before{
+            left: auto;
+            right: auto;
+            background: global.$primary-color;
+        }
+    }
+
+    :global(.svg-light){
+        display: none;
+    }
+    
+    :global(.svg-dark){
+        display: flex;
+    }
+}
+
+.contrast{
+    .round::before{
+        right: 5px;
+        background-color: global.$white; 
+    }
+
+    .contrastToggle :global(.switch .svg-light){
+        display: flex;
+    }
+
+    .contrastToggle :global(.switch .svg-dark){
+        display: none;
+    }
+}
