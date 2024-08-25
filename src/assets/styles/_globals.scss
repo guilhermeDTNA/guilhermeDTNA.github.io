@@ -34,8 +34,11 @@
 
 // Colors
 $primary-color: #5c366f;
-$yellow-color: #ffff00;
 $overlay-color: rgb(35 21 46 / 80%);
+$black: #000;
+$white: #FFF;
+$yellow: #ffff00;
+
 
 // Fonts
 $primary-font: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -61,4 +64,55 @@ body{
 
 @mixin section-title{
   font-size: 45px;
+}
+
+body.contrast{
+  nav,
+  div,
+  li,
+  ol,
+  header,
+  footer,
+  section,
+  main,
+  aside,
+  article {
+    background: $black;
+    color: $white !important;
+  }
+
+  a,
+  button{
+    color: $yellow !important;
+  }
+
+  $overlay-color: rgb(35 21 46 / 80%) !important;
+
+  table{
+    background-color: #312b2bcc !important;
+  } 
+
+  input[type=text],
+  input[type=password],
+  input[type=url],
+  input[type=search],
+  input[type=email],
+  input[type=tel],
+  input[type=date],
+  input[type=month],
+  input[type=week],
+  input[type=datetime],
+  input[type=datetime-local],
+  textarea,
+  input[type=number] {
+    background: $black;
+    border: 1px solid $white !important;
+    color: $white !important;
+  }
+
+  .scrollTopBtn {
+    color: $yellow !important;
+    background-color: $black;
+  }
+
 }

@@ -1,11 +1,12 @@
-import './styles.scss';
+import HomePage from "@/pages/HomePage";
+import ContrastToggle from "./components/ContrastToggle";
 
 export default function Home() {
   return (
-    <main>
-      <h1>TESTE açaí</h1>
-
-      <span>TESTE açaí</span>
-    </main>
+    <>
+    
+    <HomePage />
+    </>
+    
   )
 }
