@@ -1,0 +1,27 @@
+@import '../../styles/globals.scss';
+
+.itemMenuSize{
+    position: fixed;
+    top: 110px;
+    width: 80px;
+    right: 20px;
+    z-index: 1;
+    background-color: transparent;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media screen and (min-width: 992px) {
+        top: 180px;
+        justify-content: center;
+    }
+
+    .fontSize{
+        background: #5c366f;
+        color: #fff;
+        border: 0;
+        @include shadow;
+    }
+}

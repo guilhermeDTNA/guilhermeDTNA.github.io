@@ -1,4 +1,12 @@
 .body{
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  height: calc(100vh * 2);
+
   div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -22,9 +30,6 @@
   article, aside, details, figcaption, figure, 
   footer, header, hgroup, menu, nav, section {
     display: block;
-  }
-  body {
-    line-height: 1;
   }
   ol, ul {
     list-style: none;
@@ -98,13 +103,17 @@ $roboto-italic: "Roboto Italic";
 
 // Mixins
 @mixin container{
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 
   @media screen and (min-width: 1025px) {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
   }
+}
+
+@mixin shadow{
+  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .27);
 }
 
 @mixin section-title{
@@ -116,6 +125,8 @@ body.body{
 }
 
 .contrast{
+  background: $black;
+
   nav,
   div,
   li,
@@ -134,8 +145,6 @@ body.body{
   button{
     color: $yellow !important;
   }
-
-  $overlay-color: rgb(35 21 46 / 80%) !important;
 
   table{
     background-color: #312b2bcc !important;
@@ -164,4 +173,16 @@ body.body{
     background-color: $black;
   }
 
+  .round::before{
+    right: 5px !important;
+    background-color: $white !important; 
+  }
+
+  .svg-light{
+    display: flex !important;
+  }
+
+  .svg-dark{
+    display: none !important;
+  }
 }

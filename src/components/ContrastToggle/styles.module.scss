@@ -1,4 +1,4 @@
-@use '../../styles/globals.scss' as global;
+@import '../../styles/globals.scss';
 
 .contrastToggle{
     position: fixed;
@@ -59,7 +59,7 @@
             border: 1px solid;
             border-color: transparent;
             padding: 0 5px;
-            box-shadow: 0 5px 7px 0 rgba(0, 0, 0, .27);
+            @include shadow;
 
             &:global(.round){
                 border-radius: 34px;
@@ -91,10 +91,10 @@
                 svg{
                     height: 100%;
                     width: auto;
-                    fill: global.$yellow;
+                    fill: $yellow;
 
                     path{
-                        fill: global.$yellow;
+                        fill: $yellow;
                     }
                 }
             }
@@ -122,7 +122,7 @@
         :global(.slider.round)::before{
             left: auto;
             right: auto;
-            background: global.$primary-color;
+            background: $primary-color;
         }
     }
 
@@ -132,20 +132,5 @@
     
     :global(.svg-dark){
         display: flex;
-    }
-}
-
-.contrast{
-    .round::before{
-        right: 5px;
-        background-color: global.$white; 
-    }
-
-    .contrastToggle :global(.switch .svg-light){
-        display: flex;
-    }
-
-    .contrastToggle :global(.switch .svg-dark){
-        display: none;
     }
 }

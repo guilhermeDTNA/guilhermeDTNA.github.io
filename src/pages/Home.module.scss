@@ -1,5 +1,9 @@
-@use '../styles/globals.scss' as global;
+@import '../styles/globals.scss';
 
 .h1{
-    font-family: global.$roboto;
+    font-family: $roboto;
+}
+
+.container{
+    @include container;
 }

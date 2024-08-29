@@ -15,7 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className={styles.h1}>{isDisabled.toString()}</h1>
+        <div className={styles.container}>
+          <h1 className={styles.h1}>{isDisabled.toString()}</h1>
+        </div>
+        
       </main>
     </>
   );
