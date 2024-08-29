@@ -1,20 +1,23 @@
+import { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
+import $ from 'jquery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const BtnScroll = () => {
-    /*
+    const inputElement = useRef();
+    const [show, setShow] = useState<boolean>(false);
+    useEffect(setVisible, []);
+    
     function setVisible(){
         $(window).scroll(function () {
-            if ($(this).scrollTop() > 220) {
-              $('#scrolltop').fadeIn();
-            } else {
-              $('#scrolltop').fadeOut();
-            }
+            setShow($(this).scrollTop() > 220);
         });
     }
-*/
+
     return(
         <button
-            className={styles.scrollTopBtn}
+            className={`${styles.scrollTopBtn} ${show && styles.show}`}
             onClick={() => {
                 window.scrollTo({
                     top: 0,
@@ -23,6 +26,7 @@ const BtnScroll = () => {
             }}
         >
             Ir para o topo
+            <FontAwesomeIcon icon={faArrowUp} />
         </button>
     )
 }
