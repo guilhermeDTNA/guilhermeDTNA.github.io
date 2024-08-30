@@ -9,7 +9,7 @@ const ContrastToggle = () => {
 
     return(
         <div className={styles.contrastToggle}>
-            <label htmlFor='contrast' className="switch" data-title="Modo noturno">
+            <label htmlFor='contrast' className="switch" data-title={!isDisabled ? "Modo noturno" : "Modo padrão"}>
                 {isDisabled ? <input type="checkbox" id="contrast" name="contrast" onChange={toggle} /> : <input type="checkbox" id="contrast" name="contrast" onChange={toggle} checked />}
                 
                 <span className="slider round">

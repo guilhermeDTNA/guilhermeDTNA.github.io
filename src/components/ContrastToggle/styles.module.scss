@@ -28,9 +28,8 @@
 
         &::before{
             border: 7px solid transparent;
-            border-bottom-color: #4dbbc7;
+            border-bottom-color: $navy-blue;
             content: "";
-            display: block;
             position: absolute;
             top: calc(100% - 44px);
             width: 0;
@@ -38,6 +37,27 @@
             z-index: 1;
             -webkit-transform: rotateX(180deg);
             transform: rotateX(180deg);
+            display: none;
+            @include only-desk;
+        }
+
+        &:hover:before{
+            display: block;
+        }
+
+        &:hover:after {
+            content: attr(data-title);
+            position: absolute;
+            top: calc(-100% - 15px);
+            left: 0;
+            line-height: 15px;
+            right: 0;
+            text-align: center;
+            padding: 5px 0;
+            border: 1px solid;
+            background: $navy-blue;
+            color: $white;
+            @include only-desk;
         }
 
         input[type="checkbox"]{

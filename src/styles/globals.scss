@@ -91,6 +91,7 @@ $overlay-color: rgb(35 21 46 / 80%);
 $black: #000;
 $white: #FFF;
 $yellow: #ffff00;
+$navy-blue: #4dbbc7;
 
 
 // Fonts
@@ -109,6 +110,12 @@ $roboto-italic: "Roboto Italic";
   @media screen and (min-width: 1025px) {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
+  }
+}
+
+@mixin only-desk{
+  @media screen and (max-width: 1024px) {
+    display: none !important;
   }
 }
 
