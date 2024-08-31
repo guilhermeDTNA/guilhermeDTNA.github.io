@@ -2,9 +2,10 @@ import Head from "next/head";
 import styles from "./Home.module.scss";
 import { ContrastContext } from "@/providers/Context";
 import { useContext } from "react";
+import { Box, Container } from "@mui/material";
+import NavbarDesktop from "@/components/NavbarDesktop";
 
 export default function Home() {
-  const {isDisabled} = useContext(ContrastContext);
 
   return (
     <>
@@ -14,10 +15,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className={styles.container}>
-          <h1 className={styles.h1}>{isDisabled.toString()}</h1>
-        </div>
+      <main className={`${styles.home} page flex`}>
+        <NavbarDesktop />
+        <Container className="container" maxWidth="xl">
+          <section id="sobre">
+            <Box>
+              <h1>Guilherme
+                <span className="primary-color"> Rocha Leite</span>
+              </h1>
+            </Box>
+          </section>
+        </Container>
         
       </main>
     </>

@@ -7,37 +7,37 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 export const menuItems = [
     {
         name: "Sobre",
-        link: "/#sobre"
+        link: "#sobre"
     },
 
     {
         name: "Escolaridade",
-        link: "/#escolaridade"
+        link: "#escolaridade"
     },
 
     {
         name: "Experiência",
-        link: "/#experiencia"
+        link: "#experiencia"
     },
 
     {
         name: "Certificações",
-        link: "/#certificacoes"
+        link: "#certificacoes"
     },
 
     {
         name: "Habilidades",
-        link: "/#habilidades"
+        link: "#habilidades"
     },
 
     {
         name: "Projetos",
-        link: "/#projetos"
+        link: "#projetos"
     },
 
     {
         name: "Contato",
-        link: "/#contato"
+        link: "#contato"
     }
 ];
 

@@ -22,6 +22,6 @@
         background: #5c366f;
         color: #fff;
         border: 0;
-        @include shadow;
+        box-shadow: $shadow-color;
     }
 }

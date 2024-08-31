@@ -79,7 +79,7 @@
             border: 1px solid;
             border-color: transparent;
             padding: 0 5px;
-            @include shadow;
+            box-shadow: $shadow-color;
 
             &:global(.round){
                 border-radius: 34px;
