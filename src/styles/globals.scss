@@ -87,7 +87,8 @@
 
 // Colors
 $primary-color: #5c366f;
-$overlay-color: rgb(35 21 46 / 80%);
+$overlay-color: rgba(0, 0, 0, 0.8);
+$overlay-color-contrast: rgb(35 21 46 / 80%);
 $black: #000;
 $white: #FFF;
 $yellow: #ffff00;
@@ -114,7 +115,13 @@ $roboto-italic: "Roboto Italic";
 }
 
 @mixin only-desk{
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
+    display: none !important;
+  }
+}
+
+@mixin mobile-tablet{
+  @media screen and (min-width: 1024px) {
     display: none !important;
   }
 }
@@ -129,10 +136,39 @@ $roboto-italic: "Roboto Italic";
 
 body.body{
   font-family: $primary-font;
+
+  /* width */
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+	
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background-color: rgba(163,170,234,0.9);
+	}
+	
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: $primary-color;
+		border-radius: 20px;
+	}
+	
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: $navy-blue;
+	}
+}
+
+.backdrop{
+  background-color: $overlay-color;
 }
 
 .contrast{
   background: $black;
+
+  .backdrop{
+    background-color: $overlay-color-contrast;
+  }
 
   nav,
   div,

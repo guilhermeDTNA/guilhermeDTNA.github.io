@@ -1,0 +1,15 @@
+@import '../../styles/globals.scss';
+
+.menuItems{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.socialItems{
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+}
