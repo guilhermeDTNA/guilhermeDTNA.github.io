@@ -7,7 +7,6 @@ enum sizeOptions{
 
 const BtnFontSize = () => {
     function changeSize(props: sizeOptions){
-        console.log("CHAMOU")
         document.querySelectorAll(`
             body>*:not(nav) h1, 
             body>*:not(nav) h2, 

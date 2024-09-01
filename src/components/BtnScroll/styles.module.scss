@@ -5,8 +5,10 @@
     position: fixed;
     bottom: 30px;
     right: 10px;
-    padding: 8px 10px;
+    padding: 8px 13px;
     border-radius: 50px;
+    width: 40px;
+    height: 40px;
     background: $primary-color;
     color: #fff;
     font-weight: 600;
@@ -18,13 +20,19 @@
     transition: all .4s;
     border: none;
 
+    @media screen and (min-width: 1025px) {
+        width: 47px;
+        height: 47px;
+        padding: 13px 15px;
+    }
+
     &.show{
         opacity: 1;
         visibility: visible;
     }
 
     svg{
-        margin-left: 6px;
-        width: 15px;
+        width: 100%;
+        height: auto;
     }
 }

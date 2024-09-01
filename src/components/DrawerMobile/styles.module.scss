@@ -1,15 +1,68 @@
 @import '../../styles/globals.scss';
 
-.menuItems{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.hamburger{
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    svg{
+        width: 30px;
+        height: auto;
+        
+        path{
+            fill: $white;
+        }
+    }
 }
 
-.socialItems{
-    ul{
+.drawerMobile{
+    background-color: $primary-color;
+    @include page;
+    padding-bottom: 30px !important;
+    padding-top: 15px !important;
+
+    .drawerMobileHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+
+        .myName{
+            color: $white;
+        }
+    }
+
+    .menuItems{
+        margin-bottom: 20%;
+
+        ul{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 13px;
+            row-gap: 20px;
+        
+            li a{
+                padding: 0.5rem;
+                color: $white;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }   
+    }
+    
+    .socialItems{
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+
+        li{
+            svg{
+                width: 35px;
+                height: auto;
+
+                path{
+                    fill: $white;
+                }
+            }
+        }
     }
-    
 }
+

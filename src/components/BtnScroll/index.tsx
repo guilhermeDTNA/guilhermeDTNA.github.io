@@ -24,7 +24,6 @@ const BtnScroll = () => {
                 })
             }}
         >
-            Ir para o topo
             <FontAwesomeIcon icon={faArrowUp} />
         </button>
     )

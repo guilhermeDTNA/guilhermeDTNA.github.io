@@ -2,20 +2,21 @@
 
 .itemMenuSize{
     position: fixed;
-    top: 110px;
-    width: 80px;
+    top: 140px;
     right: 20px;
     z-index: 1;
     background-color: transparent;
     display: flex;
     text-align: center;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    width: 80px;
+    gap: 10px;
 
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 993px) {
         top: 180px;
         justify-content: center;
+        gap: 20px;
     }
 
     .fontSize{
@@ -23,5 +24,8 @@
         color: #fff;
         border: 0;
         box-shadow: $shadow-color;
+        font-size: 16px;
+        padding: 5px 10px;
+        border-radius: 5px;
     }
 }

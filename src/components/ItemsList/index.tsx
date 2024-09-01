@@ -62,7 +62,7 @@ export const socialItems = [
 
     {
         name: "Facebook",
-        link: "https://www.facebook.com/guilherme.rochaleite.9/",
+        link: "https://www.facebook.com/guilherme.rocha.dtna/",
         icon: <FacebookIcon />
     },
 
