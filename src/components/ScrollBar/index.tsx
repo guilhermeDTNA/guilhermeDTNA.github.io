@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styles from './styles.module.scss';
 
 const ScrollBar = () => {
-    const inputElement = useRef<HTMLInputElement>(null);
+    const scrollBarElement = useRef<HTMLDivElement>(null);
     useEffect(progressBarScroll, []);
 
     function progressBarScroll(){        
@@ -11,12 +11,12 @@ const ScrollBar = () => {
             const height: number = Number(document.documentElement.scrollHeight - document.documentElement.clientHeight);
             const scrolled: string = parseFloat(((winScroll / height) * 100).toString()).toFixed(2);
                         
-            inputElement.current?.setAttribute('style', `width: ${scrolled}%`);
+            scrollBarElement.current?.setAttribute('style', `width: ${scrolled}%`);
         })	
     }
     
     return(
-        <div ref={inputElement} className={styles.scrollBar}></div>
+        <div ref={scrollBarElement} className={styles.scrollBar}></div>
     )
 }
 

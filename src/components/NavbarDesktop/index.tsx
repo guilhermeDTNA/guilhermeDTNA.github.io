@@ -3,7 +3,7 @@ import Image from "next/image";
 import profile from '../../assets/img/profile.jpg';
 import styles from './styles.module.scss';
 import Link from "next/link";
-import { menuItems } from "../ItemsList";
+import { menuItems } from "../../providers/ItemsList";
 
 const NavbarDesktop = () => {
     function scrollTo(element: string){

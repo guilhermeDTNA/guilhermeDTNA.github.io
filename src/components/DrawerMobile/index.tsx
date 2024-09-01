@@ -1,7 +1,7 @@
 import { Box, Button, Container, Drawer } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
-import { menuItems, socialItems } from "../ItemsList";
+import { menuItems, socialItems } from "../../providers/ItemsList";
 
 import styles from './styles.module.scss';
 

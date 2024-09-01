@@ -4,4 +4,49 @@
     :global(.myName){
         display: flex;
     }
+
+    .myNameTitle{
+        text-transform: uppercase;
+    }
+
+    .details{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 3rem;
+
+        @media screen and (min-width: 1025px) {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &>*{
+            font-size: 20px;
+            margin-bottom: 0;
+
+            &:not(:last-child)::after{
+                content: "·";
+                display: inline;
+                margin: 0 15px;
+                color: $gray;
+                font-size: 18px;
+            }
+        }
+
+        :global(.location),
+        :global(.job){
+            color: $gray;
+        }
+
+        :global(.email){
+            color: $primary-color;
+        }
+    }
+
+    .blockRight{
+        color: $gray;
+    }
 }
