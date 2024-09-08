@@ -1,23 +1,23 @@
 import { experiences } from "@/providers/ItemsList";
 import { Box } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import styles from '../../../Home.module.scss';
+import styles from '../../Home.module.scss';
 import Link from "next/link";
 
 const Experience = () => {
-    const experienceElement = useRef<HTMLDivElement>(null);
-    const [experienceTop, setExperienceTop] = useState<number>(0);
-    let isArriveElement = false;
+  const experienceElement = useRef<HTMLDivElement>(null);
+  const [experienceTop, setExperienceTop] = useState<number>(0);
+  let isArriveElement = false;
 	let alreadyArrive = false;
 
-    useEffect(() => {
-        if(experienceElement.current){
-            setExperienceTop(experienceElement.current?.offsetTop);
+  useEffect(() => {
+    if(experienceElement.current){
+        setExperienceTop(experienceElement.current?.offsetTop);
 
-            window.addEventListener("scroll", () => {
-                checkExperience();
-            })
-        } 
+        window.addEventListener("scroll", () => {
+            checkExperience();
+        })
+    } 
   }, []);
 
   function typeWriter(element: Element, txt: string, i: number) {
@@ -60,21 +60,26 @@ const Experience = () => {
     <section id="experiencia" ref={experienceElement} style={{
         marginBottom: "600px"
       }}>
-        {experiences.map((item, index) => (
-          <Box className={styles.experienceBlock} key={index}>
-            <div className={styles.blockLeft}>
-              <h3>{item.name}</h3>
-              <Link href={item.companyLink}>{item.company}</Link>
-              <p>
-                {item.description}
-              </p>
-            </div>
 
-            <div className={styles.blockRight}>
-              <span data-text={item.period}></span>
-            </div>
-          </Box>
-        ))}
+        <h2 className="title">Experiência</h2>
+
+        <Box className="content">
+          {experiences.map((item, index) => (
+            <Box className={styles.experienceBlock} key={index}>
+              <div className={styles.blockLeft}>
+                <h3>{item.name}</h3>
+                <Link href={item.companyLink}>{item.company}</Link>
+                {item.description.split("\n").map((p, indexP) => 
+                  <p key={indexP}>{p}</p>
+                )}
+              </div>
+
+              <div className={styles.blockRight}>
+                <span data-text={item.period}></span>
+              </div>
+            </Box>
+          ))}
+        </Box>
     </section>
   )
 }

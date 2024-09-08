@@ -127,6 +127,13 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
   }
 }
 
+@mixin fullPageMobile{
+  @media screen and (max-width: 1024px) {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+  }
+}
+
 @mixin only-desk{
   @media screen and (max-width: 1024px) {
     display: none !important;
@@ -233,6 +240,16 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
 
   .backdrop{
     background-color: $overlay-color;
+  }
+
+  .title{
+    margin-bottom: 3rem;
+  }
+
+  .content{
+    p{
+      margin-bottom: 1rem;
+    }
   }
 
   &.contrast{

@@ -1,11 +1,13 @@
 import Head from "next/head";
-import styles from "./Home.module.scss";
+import styles from "./Home/Home.module.scss";
 import { Box, Container, Typography } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import Link from "next/link";
-import { experiences } from "@/providers/ItemsList";
-import { useEffect, useRef, useState } from "react";
 import Experience from "./Home/components/Experience";
+import Education from "./Home/components/Education";
+import Certification from "./Home/components/Certifications";
+import Skills from "./Home/components/Skills";
+import Projects from "./Home/components/Projects";
 
 export default function Home() {
   
@@ -59,9 +61,13 @@ export default function Home() {
 
           <Experience />
 
-          <section id="educacao">
+          <Education />
 
-          </section>
+          <Certification />
+
+          <Skills />
+
+          <Projects />
         </Container>
       </main>
     </>
