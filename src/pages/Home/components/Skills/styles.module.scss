@@ -1,41 +1,76 @@
 @import '../../../../styles/globals.scss';
 
-.slider{
-    @include fullPageMobile;
-
-    &::-webkit-scrollbar{
-        display: none;
+:global(.body){
+    .blockContent{
+        margin-bottom: 20px;
     }
-
-    @media screen and (max-width: 1024px) {
-        padding-left: 1rem !important;
+    
+    .blockTitle{
+        text-transform: uppercase;
+        color: $gray;
+        font-size: 19px;
+        margin-bottom: 1rem;
+        display: block;
     }
-
-    :global(.swiper-slide){
-        min-width: fit-content;
-
-        .techIcon{
-            transition: all .5s;
-            display: flex;
-            align-items: center;
-            width: fit-content;
-        
-            &:hover{
-                transform: rotate3d(0, 1, 0, 360deg);
-                
+    
+    .slider{
+        @include fullPageMobile;
+        margin-bottom: 20px;
+    
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    
+        @media screen and (max-width: 1024px) {
+            padding-left: 1rem !important;
+        }
+    
+        :global(.swiper-slide){
+            min-width: fit-content;
+    
+            .techIcon{
+                transition: all .5s;
+                display: flex;
+                align-items: center;
+                width: fit-content;
+            
+                &:hover{
+                    transform: rotate3d(0, 1, 0, 360deg);
+                    
+                    svg{
+                        transform: scale(1.2);
+                    }
+                }
+            
                 svg{
-                    transform: scale(1.2);
+                    width: auto;
+                    height: 54px;
+                    transition: all .5s;
+            
+                    path{
+                        fill: $primary-color;
+                    }
                 }
             }
-        
-            svg{
-                width: auto;
-                height: 54px;
-                transition: all .5s;
-        
-                path{
-                    fill: $primary-color;
-                }
+        }
+    }
+    
+    .block{
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        p,
+        span{
+            margin-bottom: 0;
+            color: $gray;
+        }
+
+        figure{
+            margin-right: 7px;
+
+            svg path{
+                fill: $primary-color;
             }
         }
     }

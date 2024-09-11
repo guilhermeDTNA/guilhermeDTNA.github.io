@@ -57,9 +57,7 @@ const Experience = () => {
   }
 
   return(
-    <section id="experiencia" ref={experienceElement} style={{
-        marginBottom: "600px"
-      }}>
+    <section id="experiencia" ref={experienceElement}>
 
         <h2 className="title">Experiência</h2>
 
@@ -69,13 +67,16 @@ const Experience = () => {
               <div className={styles.blockLeft}>
                 <h3>{item.name}</h3>
                 <Link href={item.companyLink}>{item.company}</Link>
-                {item.description.split("\n").map((p, indexP) => 
-                  <p key={indexP}>{p}</p>
-                )}
               </div>
 
               <div className={styles.blockRight}>
                 <span data-text={item.period}></span>
+              </div>
+
+              <div className={styles.description}>
+                {item.description.split("\n").map((p, indexP) => 
+                  <p key={indexP}>{p}</p>
+                )}
               </div>
             </Box>
           ))}

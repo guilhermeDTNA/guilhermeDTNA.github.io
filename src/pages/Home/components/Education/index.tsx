@@ -56,9 +56,7 @@ const Education = () => {
     }
 
     return(
-        <section id="escolaridade" ref={educationElement} style={{
-        marginBottom: "600px"
-        }}>
+        <section id="escolaridade" ref={educationElement}>
             <h2 className="title">Escolaridade</h2>
 
             <Box className="content">
@@ -67,13 +65,16 @@ const Education = () => {
                         <div className={styles.blockLeft}>
                             <h3>{item.name}</h3>
                             <span>{item.institution}</span>
-                            {item.description.split("\n").map((p, indexP) => 
-                                <p key={indexP}>{p}</p>
-                            )}
                         </div>
 
                         <div className={styles.blockRight}>
                             <span data-text={item.period}></span>
+                        </div>
+
+                        <div className={styles.description}>
+                            {item.description.split("\n").map((p, indexP) => 
+                                <p key={indexP}>{p}</p>
+                            )}
                         </div>
                     </Box>
                 ))}

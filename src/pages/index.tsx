@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "./Home/Home.module.scss";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import Link from "next/link";
 import Experience from "./Home/components/Experience";
@@ -22,10 +22,8 @@ export default function Home() {
       </Head>
       <main className={`${styles.home} page flex`}>
         <NavbarDesktop />
-        <Container maxWidth="xl">
-          <section id="sobre" style={{
-            marginBottom: "300px"
-          }}>
+        <Container className={styles.containerSections} maxWidth="xl">
+          <section id="sobre">
             <h1 className={styles.myNameTitle}>Guilherme
               <span className="primary-color"> Rocha Leite</span>
             </h1>
@@ -59,13 +57,23 @@ export default function Home() {
             </Box>
           </section>
 
+          <Divider />
+
           <Experience />
+
+          <Divider />
 
           <Education />
 
+          <Divider />
+
           <Certification />
 
+          <Divider />
+
           <Skills />
+
+          <Divider />
 
           <Projects />
         </Container>

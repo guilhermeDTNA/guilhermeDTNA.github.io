@@ -16,10 +16,12 @@ const Certification = () => {
                         <figure>
                             <WorkspacePremium />
                         </figure>
-                        <p>{item.name} - </p>
-                        <Link target="_blank" href={item.link}>
-                            {item.institution}
-                        </Link>
+                        <p>{item.name} - 
+                            <Link target="_blank" href={item.link}>
+                                {item.institution}
+                            </Link>
+                        </p>
+                        
                     </Box>
                 ))}
             </Box>
