@@ -1,0 +1,29 @@
+@import '../../../../styles/globals.scss';
+
+.list{
+    margin-bottom: 60px !important;
+    padding-left: 2rem !important;
+
+    li{
+        margin-bottom: 10px;
+
+        a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: $primary-color;
+    
+            svg{
+                height: 20px;
+
+                path{
+                    fill: $primary-color;
+                }
+            }
+        }
+    }
+
+    &>li:last-child{
+        margin-bottom: 0;
+    }
+}

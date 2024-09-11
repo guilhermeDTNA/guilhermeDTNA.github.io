@@ -59,16 +59,18 @@ const Skills = () => {
                                 </span>
 
                                 {item.items && 
-                                    item.items.map((itemGeneral: string, indexGeneral: number) => 
-                                        <Box key={indexGeneral} className={stylesSkill.block}>
-                                            <figure>
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </figure>
-                                            <p key={indexGeneral}>
-                                                {itemGeneral}
-                                            </p>
-                                        </Box>
-                                    )
+                                    <ul className={styles.list}>
+                                        {item.items.map((itemGeneral: string, indexGeneral: number) => 
+                                            <li key={indexGeneral} className={stylesSkill.block}>
+                                                <figure>
+                                                    <FontAwesomeIcon icon={faCheck} />
+                                                </figure>
+                                                <p key={indexGeneral}>
+                                                    {itemGeneral}
+                                                </p>
+                                            </li>
+                                        )}
+                                    </ul>
                                 }
                             </Box>
                         ))}
@@ -78,15 +80,17 @@ const Skills = () => {
                 { languages &&
                     <Box className={stylesSkill.blockContent}>
                         <span className={stylesSkill.blockTitle}>Idiomas</span>
-                        {languages.map((item: any, index: number) => (
-                            <Box key={index} className={stylesSkill.block}>
-                                <figure>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </figure>
-                                
-                                <span key={index}>{item.name} - {item.level}</span>
-                            </Box>
-                        ))}
+                        <ul className={styles.list}>
+                            {languages.map((item: any, index: number) => (
+                                <li key={index} className={stylesSkill.block}>
+                                    <figure>
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </figure>
+                                    
+                                    <span key={index}>{item.name} - {item.level}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </Box>
                 }
             </Box>

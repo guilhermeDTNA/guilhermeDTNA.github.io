@@ -5,7 +5,7 @@
         display: flex;
     }
 
-    .containerSections>section{
+    .containerSections>section:not(:first-child){
         padding-top: 5rem;
         padding-bottom: 5rem;
     }
@@ -15,6 +15,14 @@
     }
 
     :global(.content){
+        .list{
+            padding-left: 1rem;
+            
+            @media screen and (min-width: 1025px) {
+                padding-left: 2rem;
+            }
+        }
+
         .experienceBlock,
         .educationBlock{
             margin-bottom: 3rem;

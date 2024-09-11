@@ -11,19 +11,20 @@ const Certification = () => {
             <h2 className="title">Certificações</h2>
 
             <Box className="content">
-                {certifications.map((item, index) => (
-                    <Box className={styles.certificationBlock} key={index}>
-                        <figure>
-                            <WorkspacePremium />
-                        </figure>
-                        <p>{item.name} - 
-                            <Link target="_blank" href={item.link}>
-                                {item.institution}
-                            </Link>
-                        </p>
-                        
-                    </Box>
-                ))}
+                <ul className={styles.list}>
+                    {certifications.map((item, index) => (
+                        <li className={styles.certificationBlock} key={index}>
+                            <figure>
+                                <WorkspacePremium />
+                            </figure>
+                            <p>{item.name} - 
+                                <Link target="_blank" href={item.link}>
+                                    {item.institution}
+                                </Link>
+                            </p>
+                        </li>
+                    ))}
+                </ul>
             </Box>
         </section>
     )
