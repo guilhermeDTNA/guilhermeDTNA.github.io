@@ -297,7 +297,7 @@ export const skills = {
 export const projects = [
     {
         name: "Sites de E-commerce Desenvolvidos em Shopify e VTEX",
-        link: "/projetos/sites_ecommerce"
+        link: "/projetos/sites-ecommerce"
     },
 
     {
@@ -328,5 +328,23 @@ export const projects = [
     {
         name: "Sistema de Gerenciamento de Cursos Utilizando PHP",
         link: "/projetos/sistema-bd"
+    }
+]
+
+export const ecommerceProjects = [
+    {
+        platform: "VTEX CMS",
+        name: "Tecfag",
+        link: "https://www.tecfag.com.br/",
+        imageUrl: "https://guilhermerocha.dev.br/img/stores/tecfag.gif",
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "Shopify",
+        name: "Flowfa",
+        link: "http://flowfa.com.br/",
+        imageUrl: "https://guilhermerocha.dev.br/img/stores/flowfa.gif",
+        description: "Projeto de implantação"
     }
 ]
