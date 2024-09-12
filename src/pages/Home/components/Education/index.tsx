@@ -4,83 +4,83 @@ import { useEffect, useRef, useState } from "react";
 import styles from '../../Home.module.scss';
 
 const Education = () => {
-    const educationElement = useRef<HTMLDivElement>(null);
-    const [educationTop, setEducationTop] = useState<number>(0);
-    let isArriveElement = false;  
-    let alreadyArrive = false;
+  const educationElement = useRef<HTMLDivElement>(null);
+  const [educationTop, setEducationTop] = useState<number>(0);
+  let isArriveElement = false;
+  let alreadyArrive = false;
 
-    useEffect(() => {
-        if(educationElement.current){
-            setEducationTop(educationElement.current?.offsetTop);
+  useEffect(() => {
+    if (educationElement.current) {
+      setEducationTop(educationElement.current?.offsetTop);
 
-            window.addEventListener("scroll", () => {
-                checkEducation();
-            })
-        } 
-    }, []);
-
-    function typeWriter(element: Element, txt: string, i: number) {
-        if (i < txt.length && txt.length > 1) {
-            element.textContent += txt.charAt(i);
-            i++;
-            setTimeout(() => typeWriter(element, txt, i), 200);
-        }
+      window.addEventListener("scroll", () => {
+        checkEducation();
+      })
     }
+  }, []);
 
-    function setTypeWriter(element: Element){
-        let i = 0;
-        let txt = element.getAttribute("data-text");
-        let currentText = element.getAttribute("textContent");
-        if(txt === null)
-            txt = "";
-
-        if(currentText?.indexOf(txt) === -1 || currentText === null)
-            typeWriter(element, txt, i);
+  function typeWriter(element: Element, txt: string, i: number) {
+    if (i < txt.length && txt.length > 1) {
+      element.textContent += txt.charAt(i);
+      i++;
+      setTimeout(() => typeWriter(element, txt, i), 200);
     }
+  }
 
-    function checkEducation(){
-        const nextElement = educationElement.current?.nextElementSibling?.getBoundingClientRect().top;
+  function setTypeWriter(element: Element) {
+    let i = 0;
+    let txt = element.getAttribute("data-text");
+    let currentText = element.getAttribute("textContent");
+    if (txt === null)
+      txt = "";
 
-        if(nextElement && window.scrollY >= educationTop && window.scrollY < nextElement){
-            if(!alreadyArrive)
-                isArriveElement = true;
-            
-            if(isArriveElement){
-                educationElement.current?.querySelectorAll(`.${styles.blockRight} span`).forEach((item, index) => {
-                    setTypeWriter(item);
-                    isArriveElement = false;
-                    alreadyArrive = true;
-                })
-            }
-        }
+    if (currentText?.indexOf(txt) === -1 || currentText === null)
+      typeWriter(element, txt, i);
+  }
+
+  function checkEducation() {
+    const nextElement = educationElement.current?.nextElementSibling?.getBoundingClientRect().top;
+
+    if (nextElement && window.scrollY >= educationTop && window.scrollY > nextElement + 600) {
+      if (!alreadyArrive)
+        isArriveElement = true;
+
+      if (isArriveElement) {
+        educationElement.current?.querySelectorAll(`.${styles.blockRight} span`).forEach((item, index) => {
+          setTypeWriter(item);
+          isArriveElement = false;
+          alreadyArrive = true;
+        })
+      }
     }
+  }
 
-    return(
-        <section id="escolaridade" ref={educationElement}>
-            <h2 className="title">Escolaridade</h2>
+  return (
+    <section id="escolaridade" ref={educationElement}>
+      <h2 className="title">Escolaridade</h2>
 
-            <Box className="content">
-                {courses.map((item, index) => (
-                    <Box className={styles.educationBlock} key={index}>
-                        <div className={styles.blockLeft}>
-                            <h3>{item.name}</h3>
-                            <span>{item.institution}</span>
-                        </div>
+      <Box className="content">
+        {courses.map((item, index) => (
+          <Box className={styles.educationBlock} key={index}>
+            <div className={styles.blockLeft}>
+              <h3>{item.name}</h3>
+              <span>{item.institution}</span>
+            </div>
 
-                        <div className={styles.blockRight}>
-                            <span data-text={item.period}></span>
-                        </div>
+            <div className={styles.blockRight}>
+              <span data-text={item.period}></span>
+            </div>
 
-                        <div className={styles.description}>
-                            {item.description.split("\n").map((p, indexP) => 
-                                <p key={indexP}>{p}</p>
-                            )}
-                        </div>
-                    </Box>
-                ))}
-            </Box>
-        </section>
-    )
+            <div className={styles.description}>
+              {item.description.split("\n").map((p, indexP) =>
+                <p key={indexP}>{p}</p>
+              )}
+            </div>
+          </Box>
+        ))}
+      </Box>
+    </section>
+  )
 }
 
 export default Education;
