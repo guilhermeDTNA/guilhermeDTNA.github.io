@@ -16,6 +16,16 @@ import {
     faAngular
 } from '@fortawesome/free-brands-svg-icons';
 
+import barracredImage from '@/assets/img/stores/barracred.gif';
+import dreamImage from '@/assets/img/stores/dream.gif';
+import emiImage from '@/assets/img/stores/emi.gif';
+import flowfaImage from '@/assets/img/stores/flowfa.gif';
+import jvImage from '@/assets/img/stores/jv.gif';
+import novvoImage from '@/assets/img/stores/novvo.gif';
+import occhialeriaImage from '@/assets/img/stores/occhialeria.gif';
+import ryziImage from '@/assets/img/stores/ryzi.gif';
+import tecfagImage from '@/assets/img/stores/tecfag.gif';
+
 const vtexIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="189.7224690622575 186.14 1181.6090127435018 435.06000000000006">
     <g fill="currentColor">
         <path d="M656.59 186.14h-374c-29 0-47.57 30.83-34 56.46L286 313.44h-67.82A24.94 24.94 0 0 0 196.12 350l120.33 227.75a24.94 24.94 0 0 0 44.08 0l32.68-61.52 41 77.62c14.43 27.3 53.52 27.35 68 .08l187.46-352.76c13.25-24.95-4.83-55.03-33.08-55.03zm-168 150.72L407.76 489a16.6 16.6 0 0 1-29.33 0l-80.05-151.5A16.6 16.6 0 0 1 313 313.13h161.33a16.15 16.15 0 0 1 14.26 23.73zM1054.39 349.79h-40.91V490a4.83 4.83 0 0 1-4.82 4.82h-31.55a4.83 4.83 0 0 1-4.82-4.82V349.79h-41.15a4.63 4.63 0 0 1-4.82-4.58v-24.8a4.63 4.63 0 0 1 4.82-4.58h123.24a4.84 4.84 0 0 1 5.06 4.58v24.81a4.84 4.84 0 0 1-5.05 4.57zM1185.72 493.81c-8.43 1.2-22.61 3.13-48.62 3.13-31.07 0-58.52-7.95-58.52-51.78v-80c0-43.83 27.7-51.54 58.76-51.54 26 0 39.95 1.93 48.38 3.13 3.37.48 4.82 1.69 4.82 4.82V344a4.83 4.83 0 0 1-4.82 4.82h-50.78c-11.32 0-15.41 3.85-15.41 16.38v21.92h64.27a4.83 4.83 0 0 1 4.82 4.82v22.88a4.83 4.83 0 0 1-4.82 4.82h-64.27v25.53c0 12.52 4.09 16.38 15.41 16.38h50.78a4.83 4.83 0 0 1 4.82 4.82v22.4c0 3.11-1.45 4.56-4.82 5.04zM1367.43 494.77h-38.29c-3.13 0-4.58-1-6.26-3.61l-33.2-52.71L1259.6 490c-1.69 2.89-3.37 4.82-6 4.82h-35.64c-2.41 0-3.61-1.45-3.61-3.13a4.47 4.47 0 0 1 .48-1.69l52.17-87-52.71-82.61a3.42 3.42 0 0 1-.48-1.45 3.47 3.47 0 0 1 3.61-3.13h38.77c2.65 0 4.58 2.41 6 4.58l30.81 48.65 29.82-48.65c1.2-2.17 3.37-4.58 6-4.58h35.64a3.47 3.47 0 0 1 3.61 3.13 3.42 3.42 0 0 1-.48 1.45l-52.45 83.12 54.7 86.49a5.38 5.38 0 0 1 .72 2.41c.01 1.4-1.2 2.36-3.13 2.36zM868.6 316.31a3.72 3.72 0 0 0-3.64 3L830 448.7c-.48 2.65-1.2 3.61-3.37 3.61s-2.89-1-3.37-3.61l-35-129.42a3.72 3.72 0 0 0-3.64-3h-34.41a3.72 3.72 0 0 0-3.62 4.56s42.7 148.39 43.17 149.85c5.7 17.68 19.53 26.13 37.13 26.13 16.76 0 31.39-8.85 37.11-26.08.68-2 42.43-149.91 42.43-149.91a3.72 3.72 0 0 0-3.62-4.55z"></path><path d="M656.59 186.14h-374c-29 0-47.57 30.83-34 56.46L286 313.44h-67.82A24.94 24.94 0 0 0 196.12 350l120.33 227.75a24.94 24.94 0 0 0 44.08 0l32.68-61.52 41 77.62c14.43 27.3 53.52 27.35 68 .08l187.46-352.76c13.25-24.95-4.83-55.03-33.08-55.03zm-168 150.72L407.76 489a16.6 16.6 0 0 1-29.33 0l-80.05-151.5A16.6 16.6 0 0 1 313 313.13h161.33a16.15 16.15 0 0 1 14.26 23.73z"></path>
@@ -333,10 +343,74 @@ export const projects = [
 
 export const ecommerceProjects = [
     {
+        platform: "VTEX IO",
+        name: "Barracred",
+        link: "https://www.lojadocooperado.com.br/",
+        imageUrl: barracredImage,
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "VTEX IO",
+        name: "Dream Store",
+        link: "https://www.lojasdream.com/",
+        imageUrl: dreamImage,
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "VTEX CMS",
+        name: "Emibeachwear",
+        link: "https://www.emirio.com.br/",
+        imageUrl: emiImage,
+        description: "Projeto de evolução"
+    },
+
+    {
+        platform: "Shopify",
+        name: "Flowfa",
+        link: "https://flowfa.com.br/",
+        imageUrl: flowfaImage,
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "Shopify",
+        name: "Jean Vernier",
+        link: "https://jeanvernier.com.br/",
+        imageUrl: jvImage,
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "Shopify",
+        name: "Novvo",
+        link: "https://novvo.com.br/",
+        imageUrl: novvoImage,
+        description: "Projeto de evolução"
+    },
+
+    {
+        platform: "VTEX CMS",
+        name: "Occhialeria",
+        link: "https://occhialeria.com.br/",
+        imageUrl: occhialeriaImage,
+        description: "Projeto de implantação"
+    },
+
+    {
+        platform: "Shopify",
+        name: "Ryzi",
+        link: "https://www.ryzi.com.br/",
+        imageUrl: ryziImage,
+        description: "Projeto de evolução"
+    },
+
+    {
         platform: "VTEX CMS",
         name: "Tecfag",
         link: "https://www.tecfag.com.br/",
-        imageUrl: "https://guilhermerocha.dev.br/img/stores/tecfag.gif",
+        imageUrl: tecfagImage,
         description: "Projeto de implantação"
     },
 
@@ -344,7 +418,7 @@ export const ecommerceProjects = [
         platform: "Shopify",
         name: "Flowfa",
         link: "http://flowfa.com.br/",
-        imageUrl: "https://guilhermerocha.dev.br/img/stores/flowfa.gif",
+        imageUrl: flowfaImage,
         description: "Projeto de implantação"
     }
 ]

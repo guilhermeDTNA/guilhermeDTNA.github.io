@@ -1,1 +1,9 @@
 @import '../../../styles/globals.scss';
+
+.siteImage{
+    opacity: 0;
+}
+
+.loaded{
+    opacity: 1 !important;
+}

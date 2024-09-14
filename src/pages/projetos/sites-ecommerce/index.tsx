@@ -4,12 +4,14 @@ import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem';
 
 import NavbarDesktop from "@/components/NavbarDesktop";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Head from "next/head";
 import styles from './styles.module.scss';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ecommerceProjects } from '@/providers/ItemsList';
+import Link from 'next/link';
+import Image from 'next/image';
 
 enum platforms{
     all,
@@ -20,10 +22,26 @@ enum platforms{
 
 const SitesEcommerce = () => {
     const [articles, setArticles] = useState<any[]>([]);
+    const galleryElement = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if(galleryElement.current){
+            galleryElement.current.querySelectorAll(`.${styles.siteImage}`).forEach(img => {
+                img.addEventListener("load", () => {
+                    img.classList.add(styles.loaded);
+                    console.log("Imagem carregada com sucesso:");
+                    console.log(img);
+                });
+                img.addEventListener("error", () => {
+                    console.log("Erro ao carregar a imagem:");
+                    console.log(img);
+                });
+                
+            })
+        }
+    }, [articles])
 
     function handlePlatform(option: platforms){
-        console.log(articles)
-        console.log(option)
         const currentArticles:any[] = [];
         articlesElementsList.forEach((item) => {
             if(option === platforms.all || option === item.platform.toLowerCase().replaceAll(" ", "-")){
@@ -35,7 +53,6 @@ const SitesEcommerce = () => {
     }
 
     const articlesElementsList = useMemo(() => {
-        console.log("CHAMOUUUUU")
         const articles = ecommerceProjects;
 
         setArticles(articles);
@@ -84,11 +101,23 @@ const SitesEcommerce = () => {
                             </Menu>
                         </Dropdown>
 
-                        <Box className={``}>
+                        <Box ref={galleryElement}>
                             {articles && 
                                 articles.map((item, index) => (
-                                    <article key={index}>
-                                        <strong>{item.name}</strong>
+                                    <article key={index} data-platform={item.platform}>
+                                        <Link href={item.link} target="_blank">
+                                            <figure>
+                                                <Image unoptimized className={styles.siteImage} src={item.imageUrl} alt={`Representação da página inicial do(a) ${item.name}`} width={100} height={100} />
+
+                                                <figcaption>
+                                                    <strong>{item.name}</strong>
+
+                                                    <Typography>Plataforma: <b>{item.platform}</b></Typography>
+
+                                                    <p>{item.description}</p>
+                                                </figcaption>
+                                            </figure>
+                                        </Link>
                                     </article>
                                 ))
                             }
