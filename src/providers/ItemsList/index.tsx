@@ -317,7 +317,7 @@ export const projects = [
 
     {
         name: "Sistema Web para Associação Utilizando Plone, PHP, SQL e JavaScript",
-        link: "/projetos/associacao-kuruatuba"
+        link: "/projetos/sistema-kuruatuba"
     },
 
     {

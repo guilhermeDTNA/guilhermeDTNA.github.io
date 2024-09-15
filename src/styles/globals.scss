@@ -315,9 +315,22 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
         font-size: 14px;
     }
 
-    p {
+    p,
+    ul{
         color: $gray;
         margin-bottom: 1rem;
+    }
+
+    a{
+        color: $primary-color;
+    }
+
+    ul.disc{
+        padding-left: 2rem !important;
+    
+        &>li{
+            list-style-type: disc;
+        }
     }
 
     h2.pageTitle {
@@ -358,6 +371,16 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
     &:has(.ecommerce) {
         li[role="menuitem"]:hover {
             background-color: #f6f6f6 !important;
+        }
+    }
+
+    .externalLink,
+    .videoDemonstration{
+        text-align: center;
+        margin-top: 2rem;
+
+        &>a{
+            color: $primary-color;
         }
     }
 

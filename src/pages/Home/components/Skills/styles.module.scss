@@ -36,10 +36,6 @@
             
                 &:hover{
                     transform: rotate3d(0, 1, 0, 360deg);
-                    
-                    svg{
-                        transform: scale(1.2);
-                    }
                 }
             
                 svg{

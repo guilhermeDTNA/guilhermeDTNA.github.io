@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { MuiTheme } from '@/providers/MuiColors';
 import { CircularProgress } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';   
-import { faChevronDown, faChevronRight, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 enum platforms{
     all,
@@ -67,7 +67,7 @@ const SitesEcommerce = () => {
     return(
         <>
             <Head>
-                <title>Guilherme Rocha Leite - Portfólio</title>
+                <title>Sites de e-commerce | Guilherme Rocha Leite</title>
                 <meta name="description" content="Guilherme Rocha Leite é um desenvolvedor web front-end com muito conhecimento em HTML, CSS e JavaScript, além de ser referência nas plataformas de e-commerce: VTEX, Shopify e Loja Integrada. React JS, Next JS, SASS e Tailwind são exemplos de frameworks e bibliotecas com as quais ele trabalha." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
@@ -102,7 +102,7 @@ const SitesEcommerce = () => {
                                     selected === "vtex-io" ? 'VTEX IO' : 
                                     'Todas'
                                 }
-                                {dropdownOpen ? <FontAwesomeIcon icon={faChevronUp} /> : <FontAwesomeIcon icon={faChevronDown} />}
+                                {dropdownOpen ? <FontAwesomeIcon icon={faChevronLeft} width={"8px"} /> : <FontAwesomeIcon icon={faChevronRight} width={"8px"} />}
                             </MenuButton>
 
                             <Menu style={{
