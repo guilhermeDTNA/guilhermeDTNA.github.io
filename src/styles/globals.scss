@@ -1,89 +1,173 @@
-.body{
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  height: calc(100vh * 2);
-
-  div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed, 
-  figure, figcaption, footer, header, hgroup, 
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+.body {
+    line-height: 1.5;
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure, 
-  footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-  ol, ul {
-    list-style: none;
-  }
-  blockquote, q {
-    quotes: none;
-  }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-    content: '';
-    content: none;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
+    height: calc(100vh * 2);
 
-  a,
-  button:not(:disabled){
-    cursor: pointer;
-    text-decoration: none;
-  }
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    blockquote,
+    q {
+        quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    a,
+    button:not(:disabled) {
+        cursor: pointer;
+        text-decoration: none;
+    }
 }
 
 
 @font-face {
-  font-family: 'Muli';
-  font-style: normal;
-  src: url(https://fonts.gstatic.com/s/muli/v29/7Auwp_0qiz-afTLGLQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-family: 'Muli';
+    font-style: normal;
+    src: url(https://fonts.gstatic.com/s/muli/v29/7Auwp_0qiz-afTLGLQ.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Muli Bold';
-  font-style: normal;
-  font-weight: bold;
-  src: url(https://fonts.gstatic.com/s/muli/v29/7Auwp_0qiz-afTLGLQ.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    font-family: 'Muli Bold';
+    font-style: normal;
+    font-weight: bold;
+    src: url(https://fonts.gstatic.com/s/muli/v29/7Auwp_0qiz-afTLGLQ.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: "Roboto";
-  src: url("../assets/fonts/Roboto-Regular.ttf") format('truetype');
-  font-weight: normal;
+    font-family: "Roboto";
+    src: url("../assets/fonts/Roboto-Regular.ttf") format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-  font-family: "Roboto Bold";
-  src: url("../assets/fonts/Roboto-Bold.ttf") format('truetype');
+    font-family: "Roboto Bold";
+    src: url("../assets/fonts/Roboto-Bold.ttf") format('truetype');
 }
 
 @font-face {
-  font-family: "Roboto Italic";
-  src: url("../assets/fonts/Roboto-Italic.ttf") format('truetype');
+    font-family: "Roboto Italic";
+    src: url("../assets/fonts/Roboto-Italic.ttf") format('truetype');
 }
 
 // Colors
@@ -109,272 +193,270 @@ $roboto-italic: "Roboto Italic";
 $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
 
 // Mixins
-@mixin container{
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-
-  @media screen and (min-width: 1025px) {
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
-  }
-}
-
-@mixin page{
-  padding: 3rem 1rem;
-
-  @media screen and (min-width: 1025px) {
-    padding: 5rem;
-    padding-right: 3rem;
-  }
-}
-
-@mixin fullPageMobile{
-  @media screen and (max-width: 1024px) {
-    margin-left: -1rem !important;
-    margin-right: -1rem !important;
-  }
-}
-
-@mixin only-desk{
-  @media screen and (max-width: 1024px) {
-    display: none !important;
-  }
-}
-
-@mixin mobile-tablet{
-  @media screen and (min-width: 1025px) {
-    display: none !important;
-  }
-}
-
-
-.body{
-  font-family: $primary-font;
-  font-size: 17px;
-  letter-spacing: 0.05rem;
-
-  @media screen and (min-width: 1025px) {
-    font-size: 18px;
-    padding-left: 17rem;
-  }
-
-  /* width */
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background-color: rgba(163,170,234,0.9);
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: $primary-color;
-    border-radius: 20px;
-  }
-
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: $navy-blue;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6{
-    color: $title-color;
-    line-height: 1.2;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  h1,
-  h2,
-  h3{
-    font-family: $roboto-bold;
-    letter-spacing: 2px;
-    line-height: 1;
-  }
-
-  h1{
-    font-size: 51px;
+@mixin container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
 
     @media screen and (min-width: 1025px) {
-      font-size: 60px;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
     }
-  }
+}
 
-  h2{
-    font-size: 37px;
+@mixin page {
+    padding: 3rem 1rem;
 
     @media screen and (min-width: 1025px) {
-      font-size: 45px;
+        padding: 5rem;
+        padding-right: 3rem;
     }
-  }
+}
 
-  h3{
-    font-size: 27px;
-  }
+@mixin fullPageMobile {
+    @media screen and (max-width: 1024px) {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+    }
+}
 
-  h4{
-    font-size: 21px;
-  }
+@mixin only-desk {
+    @media screen and (max-width: 1024px) {
+        display: none !important;
+    }
+}
 
-  h5{
+@mixin mobile-tablet {
+    @media screen and (min-width: 1025px) {
+        display: none !important;
+    }
+}
+
+
+.body {
+    font-family: $primary-font;
     font-size: 17px;
-  }
+    letter-spacing: 0.05rem;
 
-  h6{
-    font-size: 14px;
-  }
-
-  p{
-    color: $gray;
-    margin-bottom: 1rem;
-  }
-
-  h2.pageTitle{
-    margin-bottom: 3rem;
-  }
-
-  .primary-color{
-    color: $primary-color;
-  }
-
-  .container{
-    @include container;
-  }
-  
-  .page{
-    @include page;
-
-    &.flex{
-      display: flex;
-    }
-  }
-
-  .backdrop{
-    background-color: $overlay-color;
-  }
-
-  .title{
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-  }
-
-  .content{
-    p{
-      margin-bottom: 1rem;
-    }
-  }
-
-  &:has(.ecommerce){
-    li[role="menuitem"]:hover{
-        background-color: #f6f6f6 !important;
-    }
-  }
-
-  &.contrast{
-    background: $black;
-  
-    .backdrop{
-      background-color: $overlay-color-contrast;
-    }
-  
-    nav,
-    div,
-    li,
-    ol,
-    header,
-    footer,
-    section,
-    main,
-    aside,
-    article {
-      background: $black;
-      color: $white !important;
+    @media screen and (min-width: 1025px) {
+        font-size: 18px;
+        padding-left: 17rem;
     }
 
-    p,
-    span,
+    /* width */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: rgba(163, 170, 234, 0.9);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $primary-color;
+        border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: $navy-blue;
+    }
+
     h1,
     h2,
     h3,
     h4,
     h5,
-    h6{
-      color: $white !important;
-    }
-  
-    a,
-    button{
-      color: $yellow !important;
-      background-color: transparent !important;
-    }
-  
-    table{
-      background-color: #312b2bcc !important;
-    } 
-  
-    input[type=text],
-    input[type=password],
-    input[type=url],
-    input[type=search],
-    input[type=email],
-    input[type=tel],
-    input[type=date],
-    input[type=month],
-    input[type=week],
-    input[type=datetime],
-    input[type=datetime-local],
-    textarea,
-    input[type=number] {
-      background: $black;
-      border: 1px solid $white !important;
-      color: $white !important;
-    }
-  
-    .scrollTopBtn {
-      color: $yellow !important;
-      background-color: $black;
-    }
-  
-    .round::before{
-      right: 5px !important;
-      background-color: $white !important; 
-    }
-  
-    .svg-light{
-      display: flex !important;
-    }
-  
-    .svg-dark{
-      display: none !important;
+    h6 {
+        color: $title-color;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
-    .content{
-      svg path{
-        fill: $white !important;
-      }
+    h1,
+    h2,
+    h3 {
+        font-family: $roboto-bold;
+        letter-spacing: 2px;
+        line-height: 1;
     }
 
-    &:has(.ecommerce){
-        figcaption{
-            background-color: rgb(29 28 30 / 94%) !important;
+    h1 {
+        font-size: 51px;
+
+        @media screen and (min-width: 1025px) {
+            font-size: 60px;
         }
-    
-        li[role="menuitem"]{
-            background-color: $black !important;
-    
-            &:hover{
-                color: $yellow !important;
+    }
+
+    h2 {
+        font-size: 37px;
+
+        @media screen and (min-width: 1025px) {
+            font-size: 45px;
+        }
+    }
+
+    h3 {
+        font-size: 27px;
+    }
+
+    h4 {
+        font-size: 21px;
+    }
+
+    h5 {
+        font-size: 17px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    p {
+        color: $gray;
+        margin-bottom: 1rem;
+    }
+
+    h2.pageTitle {
+        margin-bottom: 3rem;
+    }
+
+    .primary-color {
+        color: $primary-color;
+    }
+
+    .container {
+        @include container;
+    }
+
+    .page {
+        @include page;
+
+        &.flex {
+            display: flex;
+        }
+    }
+
+    .backdrop {
+        background-color: $overlay-color;
+    }
+
+    .title {
+        margin-bottom: 3rem;
+        text-transform: uppercase;
+    }
+
+    .content {
+        p {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &:has(.ecommerce) {
+        li[role="menuitem"]:hover {
+            background-color: #f6f6f6 !important;
+        }
+    }
+
+    &.contrast {
+        background: $black;
+
+        .backdrop {
+            background-color: $overlay-color-contrast;
+        }
+
+        nav,
+        div,
+        li,
+        ol,
+        header,
+        footer,
+        section,
+        main,
+        aside,
+        article {
+            background: $black;
+            color: $white !important;
+        }
+
+        p,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: $white !important;
+        }
+
+        a,
+        button {
+            color: $yellow !important;
+            background-color: transparent !important;
+        }
+
+        table {
+            background-color: #312b2bcc !important;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=url],
+        input[type=search],
+        input[type=email],
+        input[type=tel],
+        input[type=date],
+        input[type=month],
+        input[type=week],
+        input[type=datetime],
+        input[type=datetime-local],
+        textarea,
+        input[type=number] {
+            background: $black;
+            border: 1px solid $white !important;
+            color: $white !important;
+        }
+
+        .scrollTopBtn {
+            color: $yellow !important;
+            background-color: $black;
+        }
+
+        .round::before {
+            right: 5px !important;
+            background-color: $white !important;
+        }
+
+        .svg-light {
+            display: flex !important;
+        }
+
+        .svg-dark {
+            display: none !important;
+        }
+
+        .content {
+            svg path {
+                fill: $white !important;
+            }
+        }
+
+        &:has(.ecommerce) {
+            figcaption {
+                background-color: rgb(29 28 30 / 94%) !important;
+            }
+
+            li[role="menuitem"] {
+                background-color: $black !important;
+
+                &:hover {
+                    color: $yellow !important;
+                }
             }
         }
     }
-  }
-
-  
 }
