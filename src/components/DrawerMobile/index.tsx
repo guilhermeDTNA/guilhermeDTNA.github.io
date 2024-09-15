@@ -4,12 +4,26 @@ import { useState } from "react";
 import { menuItems, socialItems } from "../../providers/ItemsList";
 
 import styles from './styles.module.scss';
+import { useRouter } from "next/router";
 
 const DrawerMobile = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const router = useRouter();
 
     function toggleDrawer(param: boolean){
         setOpen(param);
+    }
+
+    function scrollTo(element: string){
+        if(document.querySelector(element)){
+            document.querySelector(element)?.scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else{
+            router.push("/"+element);
+        }
+
+        setOpen(false);
     }
 
     return(
@@ -27,7 +41,6 @@ const DrawerMobile = () => {
                 }}
             >
                 <Box className={`${styles.drawerMobile} page`}>
-
                     <Box className={styles.drawerMobileHeader}>
                         <span className={styles.myName}>Guilherme Rocha Leite</span>
 
@@ -40,7 +53,10 @@ const DrawerMobile = () => {
                         <ul>
                             {menuItems.map((item, key) => (
                                 <li key={key}>
-                                    <a href={item.link}>
+                                    <a href={item.link} onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollTo(item.link);
+                                    }}>
                                         {item.name}
                                     </a>
                                 </li>

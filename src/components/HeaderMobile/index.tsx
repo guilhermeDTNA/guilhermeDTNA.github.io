@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import DrawerMobile from "../DrawerMobile";
 import styles from './styles.module.scss';
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const HeaderMobile = () => {
     let touchstartY: number = 0;
@@ -28,11 +29,9 @@ const HeaderMobile = () => {
         })
 
         if (touchendY < touchstartY){
-            console.log('swiped BOTTOM!');
             setFixed(false);
         }
         if (touchendY > touchstartY && scrollEnable){
-            console.log('swiped TOP!')
             setFixed(true);
         }
     }
@@ -47,7 +46,9 @@ const HeaderMobile = () => {
     return(
         <header className={styles.headerMobile}>
             <Box className={`${styles.headerMobileContainer} ${fixed ? styles.fixed : ''}`}>
-                <h4 className={styles.myName}>Guilherme Rocha Leite</h4>
+                <Link href="/">
+                    <h4 className={styles.myName}>Guilherme Rocha Leite</h4>
+                </Link>
 
                 <DrawerMobile />
             </Box>

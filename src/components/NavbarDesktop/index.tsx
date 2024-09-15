@@ -4,12 +4,19 @@ import profile from '../../assets/img/profile.jpg';
 import styles from './styles.module.scss';
 import Link from "next/link";
 import { menuItems } from "../../providers/ItemsList";
+import { useRouter } from 'next/navigation'
 
 const NavbarDesktop = () => {
+    const router = useRouter();
+
     function scrollTo(element: string){
-        document.querySelector(element)?.scrollIntoView({
-            behavior: 'smooth'
-        });
+        if(document.querySelector(element)){
+            document.querySelector(element)?.scrollIntoView({
+                behavior: 'smooth'
+            });
+        } else{
+            router.push("/"+element);
+        }
     }
 
     return(
