@@ -32,10 +32,8 @@ export const ContrastProvider = ({
     }
 
     const toggle = () => {
-        console.log(isDisabled)
         setIsDisabled(!isDisabled);
         !isDisabled ? document.body.classList.add("contrast") : document.body.classList.remove("contrast");
-        console.log(isDisabled)
         localStorage.setItem("enableContrast", String(!isDisabled));
     }
 
