@@ -360,19 +360,21 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
         fill: $white !important;
       }
     }
-  }
 
-  &:has(.ecommerce){
-    figcaption{
-        background-color: rgb(29 28 30 / 94%) !important;
-    }
-
-    li[role="menuitem"]{
-        background-color: $black !important;
-
-        &:hover{
-            color: $black !important;
+    &:has(.ecommerce){
+        figcaption{
+            background-color: rgb(29 28 30 / 94%) !important;
+        }
+    
+        li[role="menuitem"]{
+            background-color: $black !important;
+    
+            &:hover{
+                color: $yellow !important;
+            }
         }
     }
   }
+
+  
 }
