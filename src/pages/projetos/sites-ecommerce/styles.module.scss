@@ -1,9 +1,175 @@
 @import '../../../styles/globals.scss';
 
-.siteImage{
-    opacity: 0;
+.body:has(.dropdownAction){
+    background-color: $white;
+
+    li[role="menuitem"]{
+        background-color: #f6f6f6 !important;
+    }
 }
 
-.loaded{
-    opacity: 1 !important;
+.dropdownAction{
+    -webkit-tap-highlight-color: transparent;
+    background-color: $white;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    float: left;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0px 29px;
+    position: relative;
+    text-align: left;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+    margin-bottom: 25px;
+    gap: 12px;
+}
+
+.storesList{
+    column-gap: 30px;
+    row-gap: 110px;
+    width: 100%;
+    padding-bottom: 50px;
+    margin-top: 75px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media screen and (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
+
+    .platform{
+        box-shadow: 0 5px 7px 0 rgba(0,0,0,.27);
+        display: flex;
+        height: fit-content;
+        overflow: hidden;
+
+        &:not(:has(.loaded)){
+            max-height: 240px;
+
+            figure{
+                height: 100%;
+            }
+        }
+
+        &>a{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        figure{
+            position: relative;
+            margin: 0;
+            width: 100%;
+
+            .siteImage{
+                opacity: 0;
+                width: 100%;
+                height: auto;
+            }
+
+            figcaption{
+                position: absolute;
+                height: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transition: .4s height, .3s opacity, .1s visibility;
+                opacity: 0;
+                visibility: hidden;
+                background: rgba(46,26,51,.94);
+                padding: 7px 20px 9px;
+                display: flex;
+                flex-wrap: wrap;
+                -webkit-box-align: center;
+                align-items: center;
+
+                @media screen and (max-width: 992px) {
+                    height: auto;
+                    opacity: 1;
+                    visibility: visible;
+                    padding-bottom: 5px;
+                }
+
+                >*{
+                    display: block;
+                    color: #fff;
+                }
+
+                strong{
+                    font-size: 20px;
+                    width: 100%;
+
+                    @media screen and (max-width: 992px) {
+                        font-size: 17px;
+                    }
+
+                    @media screen and (max-width: 423px) {
+                        font-size: 15px;
+                    }
+                }
+
+                span{
+                    font-size: 15px;
+                    width: 50%;
+                    line-height: 1;
+
+                    @media screen and (max-width: 992px) {
+                        font-size: 12px;
+                    }
+
+                    @media screen and (max-width: 423px) {
+                        font-size: 10px;
+                    }
+                }
+
+                p{
+                    margin: 0;
+                    display: block;
+                    color: #fff;
+                    font-size: 15px;
+                    line-height: 1;
+                    text-align: right;
+                    width: 50%;
+
+                    @media screen and (max-width: 992px) {
+                        font-size: 12px;
+                    }
+
+                    @media screen and (max-width: 423px) {
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            &:hover{
+                figcaption{
+                    height: 100px;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+        
+        &:has(:global(.loaded)) figure .siteImage{
+            opacity: 1;
+        }
+    }    
 }
