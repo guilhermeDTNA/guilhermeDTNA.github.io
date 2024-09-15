@@ -1,11 +1,76 @@
-import { useContext } from "react";
 import Head from "next/head";
-import { ContrastContext } from "../../providers/Context";
-import { Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
+import styles from './styles.module.scss';
+import { useRef, useState } from "react";
 
 const Contato = () => {
-    const {isDisabled} = useContext(ContrastContext );
+    const maxCharacters = 500;
+    const inputFile = useRef<HTMLInputElement>(null);
+    const btnSubmit = useRef<HTMLButtonElement>(null);
+    const charactersSpan = useRef<HTMLSpanElement>(null);
+    const [charactersLeft, setCharactersLeft] = useState<number>(maxCharacters);
+    const [file, setFile] = useState<File | null>(null);
+
+    function handleChange(event: any){
+        setFile(event?.target?.files[0]);        
+        ValidaArquivo(event?.target?.files[0]);
+    }
+
+    function ValidaArquivo(file: File) {
+        var tamanhoArquivo = file?.size / 1024 / 1024; // in MB
+        var tiposArquivo = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'];
+
+        if(tamanhoArquivo == 0){
+            //Provavelmente a pessoa não escolheu arquivo algum, então cancela
+            setFile(null);
+        }
+
+        if (tamanhoArquivo > 4) {
+            alert('O arquivo excede a 4 MB');
+            
+            //Desabilita botão de enviar
+            btnSubmit.current?.setAttribute("disabled", "disabled");
+            inputFile.current?.setAttribute("value", "");
+            setFile(null);
+        } else {
+            for (let i = 0; i < tiposArquivo.length; i++) {
+                if (file?.type === tiposArquivo[i]) {
+                    i=tiposArquivo.length;
+                    btnSubmit.current?.removeAttribute("disabled");
+                }
+
+                else if(i===tiposArquivo.length-1){
+                    alert('Tipo de arquivo não permitido (JPG, PNG, JPEG ou PDF)');
+                    btnSubmit.current?.setAttribute("disabled", "disabled");
+                    inputFile.current?.setAttribute("value", "");
+                    setFile(null);
+                }
+            }
+            
+        }
+    }
+
+    function limitTextarea(event: any) {
+        if(charactersSpan.current){
+            const valor = event.target.value;
+            const total = valor.length;
+            if(total <= maxCharacters) {
+                let resto = maxCharacters - total;
+                setCharactersLeft(resto);
+
+                if(resto <= 15){
+                    charactersSpan.current.classList.add(styles.limit);
+                } else{
+                    charactersSpan.current.classList.remove(styles.limit);
+                }
+
+            } else {
+                setCharactersLeft(valor.substr(0, maxCharacters));
+            }
+        }
+        
+    }
 
     return(
         <>
@@ -18,8 +83,59 @@ const Contato = () => {
 
             <main className="page flex">
                 <NavbarDesktop />
-                <Container className="container" maxWidth="xl">
-                    <h1>{isDisabled.toString()}</h1>
+                <Container maxWidth="xl">
+                    <h3 className={styles.contactTitle}>Envie uma mensagem</h3>
+
+                    <section>
+                        <form className={styles.contactForm}>
+                            <Box className={styles.contactFormBody}>
+                                <Box className={`${styles.formLine}`}>
+                                    <fieldset>
+                                        <label htmlFor="nome_autor">Nome
+                                            <span className="required">*</span>
+                                        </label>
+                                        <input type="text" placeholder="Nome" name="nome_autor" id="nome_autor" required />
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <label htmlFor="email_autor">E-mail
+                                            <span className="required">*</span>
+                                        </label>
+                                        <input type="email" placeholder="E-mail" name="email_autor" id="email_autor" required />
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <label htmlFor="telefone_autor">Telefone</label>
+                                        <input type="text" id="telefone_autor" placeholder="Telefone" name="telefone_autor" />
+                                    </fieldset>
+                                </Box>
+
+                                <Box className={styles.formBlock}>
+                                    <Box>
+                                        <span ref={charactersSpan} className={styles.charactersLeft}>{charactersLeft}</span>
+                                        <span>Restantes</span>  
+                                        <span className="required">*</span>
+                                    </Box>
+                                    <fieldset>
+                                        <textarea maxLength={maxCharacters} rows={3} cols={6} placeholder="Mensagem" name="conteudo" id="texto" required
+                                            onKeyUp={limitTextarea}
+                                        ></textarea>
+                                        {!file?.name ? 
+                                            <input value="" ref={inputFile} onChange={handleChange} name="arquivo" type="file" id="arquivo" />
+                                        : 
+                                            <input ref={inputFile} onChange={handleChange} name="arquivo" type="file" id="arquivo" />
+                                        }
+                                    </fieldset>
+                                </Box>
+                            </Box>
+
+                            <Box className={styles.submitArea}>
+                                <Button ref={btnSubmit} type="submit">
+                                    Enviar Mensagem
+                                </Button>
+                            </Box>
+                        </form>
+                    </section>
                 </Container>
             </main>
         </>

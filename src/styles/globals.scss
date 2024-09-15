@@ -93,6 +93,23 @@
         vertical-align: baseline;
     }
 
+    input[type=text],
+    input[type=password],
+    input[type=url],
+    input[type=search],
+    input[type=email],
+    input[type=tel],
+    input[type=date],
+    input[type=month],
+    input[type=week],
+    input[type=datetime],
+    input[type=datetime-local],
+    textarea,
+    input[type=number]{
+        padding-block: 0;
+        padding-inline: unset;
+    }
+
     /* HTML5 display-role reset for older browsers */
     article,
     aside,
@@ -180,6 +197,11 @@ $yellow: #ffff00;
 $navy-blue: #4dbbc7;
 $gray: #6c757d;
 $title-color: #343a40;
+$brown: #5c321f;
+$blue: #8f80c8;
+$error-color: #9b054a;
+$light-green: #90ee90;
+$dark-blue: #4f57a9;
 
 
 // Fonts
@@ -323,6 +345,11 @@ $shadow-color: 0 5px 7px 0 rgba(0, 0, 0, .27);
 
     a{
         color: $primary-color;
+    }
+
+    span.required{
+        color: $error-color;
+        margin-left: 5px;
     }
 
     ul.disc{
