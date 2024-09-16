@@ -181,3 +181,72 @@
     }
     
 }
+
+:global(.body){
+    .sectionContact{
+        margin-bottom: 4rem;
+    
+        .visitarPerfis {
+            margin: 0;
+            color: #212121;
+            padding-bottom: 0;
+            -ms-grid-column: 1;
+            grid-column: 1;
+            -ms-grid-row: 1;
+            grid-row: 1;
+            z-index: 1;
+            font-family: 'Teko', sans-serif;
+            font-size: 26px;
+            text-transform: uppercase;
+            -webkit-animation: glow 2s ease-in-out infinite alternate;
+                    animation: glow 2s ease-in-out infinite alternate;
+            text-align: center; 
+            font-weight: bold;
+        }
+
+        .socialItems{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10%;
+            margin-top: 20px;
+
+            @media screen and (min-width: 992px) {
+                gap: 40px;
+            }
+
+            a{
+                transition: all .3s;
+                display: flex;
+
+                &:hover{
+                    transform: scale(1.2);
+                }
+
+                svg{
+                    width: 37px;
+                    height: auto;
+
+                    @media screen and (min-width: 992px) {
+                        width: 42px;
+                    }
+
+                    @media screen and (min-width: 1025px) {
+                        width: 47px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 8px #4dbbc7; 
+    }
+    to {
+        text-shadow: 0 0 28px #34b3c1, 0 0 5px #4dbbc7; 
+    } 
+}

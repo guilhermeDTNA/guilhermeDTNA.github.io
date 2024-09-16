@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
+import { socialItems } from "@/providers/ItemsList";
 
 const Contato = () => {
     const maxCharacters = 500;
@@ -86,7 +87,7 @@ const Contato = () => {
                 <Container maxWidth="xl">
                     <h3 className={styles.contactTitle}>Envie uma mensagem</h3>
 
-                    <section>
+                    <section className={styles.sectionContact}>
                         <form className={styles.contactForm}>
                             <Box className={styles.contactFormBody}>
                                 <Box className={`${styles.formLine}`}>
@@ -135,6 +136,25 @@ const Contato = () => {
                                 </Button>
                             </Box>
                         </form>
+                    </section>
+
+                    <section className={styles.sectionContact}>
+                        <Typography className={styles.visitarPerfis}>
+                            Visite meu perfil nas redes sociais:
+                        </Typography>
+
+                        {socialItems.length && 
+                            <ul className={styles.socialItems}>
+                                {socialItems.map((item, key) => (
+                                    <li key={key}>
+                                        <a title={item.name} href={item.link} target="_blank">
+                                            {item.icon}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        }
+                        
                     </section>
                 </Container>
             </main>
