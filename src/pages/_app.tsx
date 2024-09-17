@@ -6,6 +6,7 @@ import BtnFontSize from "@/components/BtnFontSize";
 import BtnScroll from "@/components/BtnScroll";
 import ScrollBar from "@/components/ScrollBar";
 import HeaderMobile from "@/components/HeaderMobile";
+import CookiesAdvise from "@/components/CookiesAdvise";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <BtnScroll />
             <ScrollBar />
             <Component {...pageProps} />
+            <CookiesAdvise />
         </ContrastProvider>
     );
 }
