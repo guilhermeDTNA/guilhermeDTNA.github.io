@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import styles from './styles.module.scss';
 
 const CookiesAdvise = () => {
-    console.log("TESTANDO BRANCH MAIN")
     const [open, setOpen] = useState<boolean>(false);
 
     useEffect(() => {
