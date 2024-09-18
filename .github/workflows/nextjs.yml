@@ -79,12 +79,15 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      - name: Create .env with Github Secrets and run script
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.RESEND_KEY }}
+          publish_dir: ./out
+      - name: Build project
         run: |
-          touch .env
-          echo ENV_VAR_1=$RESEND_KEY >> .env
-        env:
-          RESEND_KEY: ${{ secrets.RESEND_KEY }}
+          export RESEND_KEY=${{ secrets.RESEND_KEY }}
+          npm run build
 
   # Deployment job
   deploy:
