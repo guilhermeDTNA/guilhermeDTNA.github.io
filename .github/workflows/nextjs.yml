@@ -80,7 +80,6 @@ jobs:
         with:
           path: ./out
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.RESEND_KEY }}
           publish_dir: ./out
