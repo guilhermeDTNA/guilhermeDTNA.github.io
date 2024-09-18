@@ -80,12 +80,12 @@ jobs:
         with:
           path: ./out
       - name: Create .env with Github Secrets and run script
-      run: |
-        touch .env
-        echo ENV_VAR_1=$RESEND_KEY >> .env
-        npm run script-that-accesses-env-vars
-      env:
-        RESEND_KEY: ${{ secrets.RESEND_KEY }}
+        run: |
+          touch .env
+          echo ENV_VAR_1=$RESEND_KEY >> .env
+          npm run script-that-accesses-env-vars
+        env:
+          RESEND_KEY: ${{ secrets.RESEND_KEY }}
 
   # Deployment job
   deploy:
