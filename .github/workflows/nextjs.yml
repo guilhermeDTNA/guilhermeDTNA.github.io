@@ -80,9 +80,6 @@ jobs:
         with:
           path: ./out
       - name: Deploy to GitHub Pages
-        with:
-          github_token: ${{ secrets.RESEND_KEY }}
-          publish_dir: ./out
         run: |
           export RESEND_KEY=${{ secrets.RESEND_KEY }}
           npm run build
