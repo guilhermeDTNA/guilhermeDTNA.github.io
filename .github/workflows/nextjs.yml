@@ -79,10 +79,13 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      - name: create env file
-        run: |
-          touch .env
-          echo ENGINE_API_KEY=${{ secrets.RESEND_KEY }} >> .env
+      - name: Create .env with Github Secrets and run script
+      run: |
+        touch .env
+        echo ENV_VAR_1=$RESEND_KEY >> .env
+        npm run script-that-accesses-env-vars
+      env:
+        RESEND_KEY: ${{ secrets.RESEND_KEY }}
 
   # Deployment job
   deploy:
