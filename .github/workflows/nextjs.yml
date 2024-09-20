@@ -79,10 +79,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      - name: Deploy to GitHub Pages
-        run: |
-          export RESEND_KEY=${{ secrets.RESEND_KEY }}
-          npm run build
+      env:
+        RESEND_KEY=${{ secrets.RESEND_KEY }}
+        NEXT_PUBLIC_GA_TRACKING=${{ secrets.NEXT_PUBLIC_GA_TRACKING }}
 
   # Deployment job
   deploy:

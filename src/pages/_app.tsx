@@ -7,9 +7,11 @@ import BtnScroll from "@/components/BtnScroll";
 import ScrollBar from "@/components/ScrollBar";
 import HeaderMobile from "@/components/HeaderMobile";
 import CookiesAdvise from "@/components/CookiesAdvise";
+import Analytics from "@/components/Analytics";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
+        <>
         <ContrastProvider>
             <HeaderMobile />
             <ContrastToggle />
@@ -19,5 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
             <CookiesAdvise />
         </ContrastProvider>
+
+        <Analytics />
+        </>
     );
 }

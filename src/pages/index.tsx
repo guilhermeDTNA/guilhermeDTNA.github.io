@@ -10,7 +10,6 @@ import Skills from "./Home/components/Skills";
 import Projects from "./Home/components/Projects";
 
 export default function Home() {
-    console.log(process.env.RESEND_KEY)
     return (
         <>
             <Head>
