@@ -8,21 +8,24 @@ import ScrollBar from "@/components/ScrollBar";
 import HeaderMobile from "@/components/HeaderMobile";
 import CookiesAdvise from "@/components/CookiesAdvise";
 import Analytics from "@/components/Analytics";
+import Clarity from "@/components/Clarity";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
-        <ContrastProvider>
-            <HeaderMobile />
-            <ContrastToggle />
-            <BtnFontSize />
-            <BtnScroll />
-            <ScrollBar />
-            <Component {...pageProps} />
-            <CookiesAdvise />
-        </ContrastProvider>
+            <Clarity />
 
-        <Analytics />
+            <ContrastProvider>
+                <HeaderMobile />
+                <ContrastToggle />
+                <BtnFontSize />
+                <BtnScroll />
+                <ScrollBar />
+                <Component {...pageProps} />
+                <CookiesAdvise />
+            </ContrastProvider>
+
+            <Analytics />
         </>
     );
 }
