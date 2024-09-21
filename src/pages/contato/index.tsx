@@ -35,14 +35,10 @@ const Contato = () => {
         var tiposArquivo = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'];
 
         if(tamanhoArquivo == 0){
-            //Provavelmente a pessoa não escolheu arquivo algum, então cancela
             setFile(null);
         }
-
         if (tamanhoArquivo > 4) {
             alert('O arquivo excede a 4 MB');
-            
-            //Desabilita botão de enviar
             btnSubmit.current?.setAttribute("disabled", "disabled");
             inputFile.current?.setAttribute("value", "");
             setFile(null);
@@ -70,13 +66,11 @@ const Contato = () => {
             if(total <= maxCharacters) {
                 let resto = maxCharacters - total;
                 setCharactersLeft(resto);
-
                 if(resto <= 15){
                     charactersSpan.current.classList.add(styles.limit);
                 } else{
                     charactersSpan.current.classList.remove(styles.limit);
                 }
-
             } else {
                 setCharactersLeft(valor.substr(0, maxCharacters));
             }
@@ -101,8 +95,9 @@ const Contato = () => {
     }
 
     function handleOpenModal(){
+        clearFields();
         setModalOpen(true);
-        setTimeout(handleCloseModal, 5000);
+        //setTimeout(handleCloseModal, 5000);
     }
     
     function handleCloseModal(){
@@ -112,7 +107,7 @@ const Contato = () => {
     async function sendMail(e: any){
         e.preventDefault();
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
-
+        
         const resp = await fetch(url, {
             method: "POST",
             headers: {
@@ -127,9 +122,16 @@ const Contato = () => {
         })
         
         const isSent = await resp.status;
-
-        handleOpenModal();
         setSent(isSent === 200);
+        handleOpenModal();
+    }
+
+    function clearFields(){
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("")
+        setFile(null);
     }
 
     return(
@@ -161,6 +163,7 @@ const Contato = () => {
                                         id="nome_autor"
                                         required
                                         onChange={handleName}    
+                                        value={name}
                                     />
                                     </fieldset>
 
@@ -175,6 +178,7 @@ const Contato = () => {
                                         id="email_autor" 
                                         required
                                         onChange={handleEmail}
+                                        value={email}
                                     />
                                     </fieldset>
 
@@ -185,7 +189,8 @@ const Contato = () => {
                                             id="telefone_autor" 
                                             placeholder="Telefone" 
                                             name="telefone_autor" 
-                                            onChange={handlePhone}    
+                                            onChange={handlePhone}
+                                            value={phone}    
                                         />
                                     </fieldset>
                                 </Box>
@@ -207,13 +212,14 @@ const Contato = () => {
                                             required
                                             onKeyUp={limitTextarea}
                                             onChange={handleMessage}
+                                            value={message}
                                         ></textarea>
                                         {!file?.name ? 
                                             <input
                                                 style={{
                                                     display: "none"
                                                 }}
-                                                value="" 
+                                                value=""
                                                 ref={inputFile} 
                                                 onChange={handleChange} 
                                                 name="arquivo" 
