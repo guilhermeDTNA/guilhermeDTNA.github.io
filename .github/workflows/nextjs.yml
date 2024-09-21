@@ -79,6 +79,7 @@ jobs:
           RESEND_KEY: ${{ secrets.RESEND_KEY }}
           NEXT_PUBLIC_GA_TRACKING: ${{ secrets.NEXT_PUBLIC_GA_TRACKING }}
           NEXT_PUBLIC_CLARITY: ${{ secrets.NEXT_PUBLIC_CLARITY }}
+          NEXT_PUBLIC_EMAIL_SERVER: ${{ secrets.NEXT_PUBLIC_EMAIL_SERVER }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

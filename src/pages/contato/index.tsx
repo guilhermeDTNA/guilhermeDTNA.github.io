@@ -1,9 +1,15 @@
 import Head from "next/head";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Modal, Snackbar, Typography } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
+
+export const config = {
+    api: {
+      bodyParser: false,
+    },
+};
 
 const Contato = () => {
     const maxCharacters = 500;
@@ -12,6 +18,12 @@ const Contato = () => {
     const charactersSpan = useRef<HTMLSpanElement>(null);
     const [charactersLeft, setCharactersLeft] = useState<number>(maxCharacters);
     const [file, setFile] = useState<File | null>(null);
+    const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [message, setMessage] = useState<string>("");
+    const [sent, setSent] = useState<boolean>(false);
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -48,7 +60,6 @@ const Contato = () => {
                     setFile(null);
                 }
             }
-            
         }
     }
 
@@ -73,6 +84,54 @@ const Contato = () => {
         
     }
 
+    function handleName(e: any){
+        setName(e?.target?.value);
+    }
+
+    function handleEmail(e: any){
+        setEmail(e?.target?.value);
+    }
+
+    function handlePhone(e: any){
+        setPhone(e?.target?.value);
+    }
+
+    function handleMessage(e: any){
+        setMessage(e?.target?.value);
+    }
+
+    function handleOpenModal(){
+        setModalOpen(true);
+        setTimeout(handleCloseModal, 5000);
+    }
+    
+    function handleCloseModal(){
+        setModalOpen(false);
+    }
+
+    async function sendMail(e: any){
+        e.preventDefault();
+        const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
+
+        const resp = await fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                phone,
+                message
+            })
+        })
+        
+        const isSent = await resp.status;
+
+        handleOpenModal();
+        setSent(isSent === 200);
+    }
+
     return(
         <>
             <Head>
@@ -88,26 +147,46 @@ const Contato = () => {
                     <h3 className={styles.contactTitle}>Envie uma mensagem</h3>
 
                     <section className={styles.sectionContact}>
-                        <form className={styles.contactForm}>
+                        <form method="POST" className={styles.contactForm} onSubmit={sendMail}>
                             <Box className={styles.contactFormBody}>
                                 <Box className={`${styles.formLine}`}>
                                     <fieldset>
                                         <label htmlFor="nome_autor">Nome
                                             <span className="required">*</span>
                                         </label>
-                                        <input type="text" placeholder="Nome" name="nome_autor" id="nome_autor" required />
+                                        <input 
+                                        type="text" 
+                                        placeholder="Nome" 
+                                        name="nome_autor" 
+                                        id="nome_autor"
+                                        required
+                                        onChange={handleName}    
+                                    />
                                     </fieldset>
 
                                     <fieldset>
                                         <label htmlFor="email_autor">E-mail
                                             <span className="required">*</span>
                                         </label>
-                                        <input type="email" placeholder="E-mail" name="email_autor" id="email_autor" required />
+                                        <input 
+                                        type="email" 
+                                        placeholder="E-mail" 
+                                        name="email_autor" 
+                                        id="email_autor" 
+                                        required
+                                        onChange={handleEmail}
+                                    />
                                     </fieldset>
 
                                     <fieldset>
                                         <label htmlFor="telefone_autor">Telefone</label>
-                                        <input type="text" id="telefone_autor" placeholder="Telefone" name="telefone_autor" />
+                                        <input 
+                                            type="text" 
+                                            id="telefone_autor" 
+                                            placeholder="Telefone" 
+                                            name="telefone_autor" 
+                                            onChange={handlePhone}    
+                                        />
                                     </fieldset>
                                 </Box>
 
@@ -118,13 +197,40 @@ const Contato = () => {
                                         <span className="required">*</span>
                                     </Box>
                                     <fieldset>
-                                        <textarea maxLength={maxCharacters} rows={3} cols={6} placeholder="Mensagem" name="conteudo" id="texto" required
+                                        <textarea 
+                                            maxLength={maxCharacters} 
+                                            rows={3} 
+                                            cols={6} 
+                                            placeholder="Mensagem" 
+                                            name="conteudo" 
+                                            id="texto" 
+                                            required
                                             onKeyUp={limitTextarea}
+                                            onChange={handleMessage}
                                         ></textarea>
                                         {!file?.name ? 
-                                            <input value="" ref={inputFile} onChange={handleChange} name="arquivo" type="file" id="arquivo" />
+                                            <input
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                                value="" 
+                                                ref={inputFile} 
+                                                onChange={handleChange} 
+                                                name="arquivo" 
+                                                type="file" 
+                                                id="arquivo" 
+                                            />
                                         : 
-                                            <input ref={inputFile} onChange={handleChange} name="arquivo" type="file" id="arquivo" />
+                                            <input
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                                ref={inputFile} 
+                                                onChange={handleChange} 
+                                                name="arquivo" 
+                                                type="file" 
+                                                id="arquivo" 
+                                            />
                                         }
                                     </fieldset>
                                 </Box>
@@ -154,8 +260,23 @@ const Contato = () => {
                                 ))}
                             </ul>
                         }
-                        
                     </section>
+
+                    <Modal
+                        open={modalOpen}
+                        onClose={handleCloseModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <Box>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                {sent ? 
+                                "Mensagem enviada com sucesso!" : 
+                                "Ocorreu um erro ao enviar a mensagem..."
+                                }
+                            </Typography>
+                        </Box>
+                    </Modal>
                 </Container>
             </main>
         </>
