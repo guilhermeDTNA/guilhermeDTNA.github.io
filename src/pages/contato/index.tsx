@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Button, Container, Modal, Snackbar, Typography } from "@mui/material";
+import { Box, Button, Container, Modal, Snackbar, Typography, useMediaQuery } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
@@ -24,6 +24,7 @@ const Contato = () => {
     const [message, setMessage] = useState<string>("");
     const [sent, setSent] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const isMobile = useMediaQuery('(max-width:1024px)');
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -95,9 +96,9 @@ const Contato = () => {
     }
 
     function handleOpenModal(){
-        clearFields();
+        sent && clearFields();
         setModalOpen(true);
-        //setTimeout(handleCloseModal, 5000);
+        setTimeout(handleCloseModal, 15000);
     }
     
     function handleCloseModal(){
@@ -108,22 +109,27 @@ const Contato = () => {
         e.preventDefault();
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
         
-        const resp = await fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                phone,
-                message
+        try{
+            const resp = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message
+                })
             })
-        })
-        
-        const isSent = await resp.status;
-        setSent(isSent === 200);
-        handleOpenModal();
+            
+            const isSent = await resp.status;
+            setSent(isSent === 200);
+            handleOpenModal();
+        } catch(error){
+            setSent(false);
+            handleOpenModal();
+        }
     }
 
     function clearFields(){
@@ -273,12 +279,33 @@ const Contato = () => {
                         onClose={handleCloseModal}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
-                        >
-                        <Box>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                        
+                        sx={
+                            isMobile ? 
+                            {
+                                display: "flex",
+                                justifyContent: "center"
+                            }
+                            :
+                            {
+                                display: "flex",
+                                justifyContent: "center",
+                                left: "17rem"
+                            }
+                        } 
+                    >
+                        <Box className={`${sent ? styles.success : styles.fail} ${styles.modalContainer}`}>
+                            <Typography className={styles.modalText}>
                                 {sent ? 
-                                "Mensagem enviada com sucesso!" : 
-                                "Ocorreu um erro ao enviar a mensagem..."
+                                "Mensagem enviada com sucesso!" 
+                                : 
+                                <>
+                                    <Typography className={styles.modalText} style={{
+                                        marginBottom: "10px"
+                                    }}>Ocorreu um erro ao enviar a mensagem... 😕️</Typography>
+                                    <Typography className={styles.modalText}>Favor entrar em contato por alguma rede social</Typography>
+                                </>
+                                
                                 }
                             </Typography>
                         </Box>

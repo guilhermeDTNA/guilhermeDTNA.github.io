@@ -28,23 +28,20 @@
 
     .contactFormBody{
         box-shadow: 0 5px 7px 0 rgba(0,0,0,.27);
-        padding: 13px 0;
         width: 100%;
         background-color: $blue;
-
-        @media screen and (min-width: 1025px) {
-            padding: 13px !important;
-        }
+        padding-top: 20px;
+        padding-bottom: 20px;
 
         .formLine,
         .formBlock{
             fieldset{
-                width: 85%;
+                width: 100%;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
 
                 @media screen and (min-width: 1025px) {
-                    width: auto;
-                    flex: 1;
                     text-align: left;
                 }
 
@@ -58,7 +55,7 @@
                 input[type="text"],
                 input[type="email"],
                 textarea{
-                    padding: 4px 5px;
+                    padding: 5px;
                     border-radius: 5px;
                     border: none;
                     outline: 0;
@@ -66,43 +63,42 @@
                     line-height: 1.5;
                     font-size: 16px;
                     width: 100%;
+                    max-width: -webkit-fill-available;
                     
                     @media screen and (min-width: 1025px) {
                         font-size: 18px;
-                        width: auto;
                     }
-                }
-
-                textarea{
-                    width: 80%;
                 }
             }
         }
 
         .formLine{
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            flex-direction: column;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr;
+            padding: 0 13px;
 
-            @media screen and (min-width: 1025px) {
-                flex-direction: row;
-            }
-            
-            fieldset{
-                flex: 1;
+            @media screen and (min-width: 1366px) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+                padding-left: 20px;
+                padding-right: 20px;
             }
         }
 
         .formBlock{
             margin-top: 20px;
+            padding: 0 13px;
+
+            @media screen and (min-width: 1366px) {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
 
             &>div{
                 margin-bottom: 5px;
                 display: flex;
                 align-items: baseline;
-                width: 85%;
                 margin-left: auto;
                 margin-right: auto;
 
@@ -120,21 +116,12 @@
                 width: 100%;
 
                 @media screen and (min-width: 1025px) {
-                    width: 85%;
                     margin-left: auto;
                     margin-right: auto;
                     display: flex;
                     align-items: center;
                     flex-wrap: wrap;
                     gap: 15px;
-                }
-
-                textarea{
-                    width: 85%;
-
-                    @media screen and (min-width: 1025px) {
-                        width: 100%;
-                    }
                 }
 
                 input[type="file"]{
@@ -238,9 +225,50 @@
             }
         }
     }
-    
-}
 
+    .modalContainer{
+        display: flex;
+        height: fit-content;
+        padding: 15px;
+        max-width: 90%;
+        margin: 0 auto;
+        position: absolute;
+        top: 15lvh;
+        border-radius: 8px;
+        outline: none;
+        text-align: center;
+        justify-content: center;
+
+        &.success{
+            background-color: $succes-color;
+        }
+
+        &.fail{
+            background-color: $error-color;
+        }
+
+        @media screen and (min-width: 768px) {
+            padding: 23px 35px;
+        }
+
+        @media screen and (min-width: 1025px) {
+            padding: 23px 35px;
+        }
+
+        .modalText{
+            margin: 0;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            font-size: 16px;
+            line-height: normal;
+
+            @media screen and (min-width: 1025px) {
+                font-size: 21px;
+            }
+        }
+    }
+}
 
 @keyframes glow {
     from {
