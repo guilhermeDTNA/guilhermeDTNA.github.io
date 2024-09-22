@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Button, Container, Modal, Snackbar, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Container, Modal, Typography, useMediaQuery } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
@@ -98,7 +98,7 @@ const Contato = () => {
     function handleOpenModal(){
         sent && clearFields();
         setModalOpen(true);
-        setTimeout(handleCloseModal, 15000);
+        setTimeout(handleCloseModal, 7000);
     }
     
     function handleCloseModal(){
