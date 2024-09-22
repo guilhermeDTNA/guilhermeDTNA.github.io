@@ -128,6 +128,8 @@ const Contato = () => {
                 body: JSON.stringify({gRecaptchaToken})
             })
 
+            console.log(resp)
+
             const { data } = await resp.json();
         
             if (data?.success) {
@@ -145,10 +147,12 @@ const Contato = () => {
 
     async function sendMail(e: any){
         e.preventDefault();
+        /*
         const recaptchaValidation = await getRecaptchaValidation();
         if(!recaptchaValidation){
             return;
         }
+        */
 
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
         
