@@ -80,6 +80,8 @@ jobs:
           NEXT_PUBLIC_GA_TRACKING: ${{ secrets.NEXT_PUBLIC_GA_TRACKING }}
           NEXT_PUBLIC_CLARITY: ${{ secrets.NEXT_PUBLIC_CLARITY }}
           NEXT_PUBLIC_MAIL_SERVER: ${{ secrets.NEXT_PUBLIC_MAIL_SERVER }}
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+          RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

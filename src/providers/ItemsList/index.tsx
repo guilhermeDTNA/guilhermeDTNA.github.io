@@ -61,11 +61,6 @@ export const menuItems = [
     {
         name: "Projetos",
         link: "#projetos"
-    },
-
-    {
-        name: "Contato",
-        link: "contato"
     }
 ];
 

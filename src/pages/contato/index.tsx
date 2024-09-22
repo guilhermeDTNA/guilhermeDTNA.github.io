@@ -4,6 +4,8 @@ import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
+import { GoogleReCaptcha, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import axios from 'axios';
 
 export const config = {
     api: {
@@ -25,6 +27,8 @@ const Contato = () => {
     const [sent, setSent] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const isMobile = useMediaQuery('(max-width:1024px)');
+    const [statusRecaptha, setStatusRecaptcha] = useState<boolean>(false);
+    const { executeRecaptcha } = useGoogleReCaptcha();
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -105,8 +109,47 @@ const Contato = () => {
         setModalOpen(false);
     }
 
+    async function getRecaptchaValidation(): Promise<boolean>{
+        if (!executeRecaptcha) {
+            console.error('ReCAPTCHA not available');
+            return false;
+        }
+
+        const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/captcha`;
+    
+        const gRecaptchaToken = await executeRecaptcha('registerSubmit');
+    
+        try {
+            const resp = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({gRecaptchaToken})
+            })
+
+            const { data } = await resp.json();
+        
+            if (data?.success) {
+                console.log(`Registration success with score: ${data.score}`);
+                return true;
+            } else {
+                console.error(`Registration failure with score: ${data.score}`);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            return false;
+        }
+    }
+
     async function sendMail(e: any){
         e.preventDefault();
+        const recaptchaValidation = await getRecaptchaValidation();
+        if(!recaptchaValidation){
+            return;
+        }
+
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
         
         try{
@@ -253,6 +296,8 @@ const Contato = () => {
                                     Enviar Mensagem
                                 </Button>
                             </Box>
+                            
+                            <GoogleReCaptcha onVerify={() => {}} action="page_view" />
                         </form>
                     </section>
 
