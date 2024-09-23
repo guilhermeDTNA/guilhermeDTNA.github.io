@@ -66,7 +66,7 @@ const Experience = () => {
                     <Box className={styles.experienceBlock} key={index}>
                         <div className={styles.blockLeft}>
                             <h3>{item.name}</h3>
-                            <Link href={item.companyLink}>{item.company}</Link>
+                            <Link href={item.companyLink} target="_blank">{item.company}</Link>
                         </div>
 
                         <div className={styles.blockRight}>

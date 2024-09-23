@@ -8,13 +8,14 @@ import Education from "./Home/components/Education";
 import Certification from "./Home/components/Certifications";
 import Skills from "./Home/components/Skills";
 import Projects from "./Home/components/Projects";
+import { metaDescription } from "@/providers/SiteInfo";
 
 export default function Home() {
     return (
         <>
             <Head>
                 <title>Guilherme Rocha Leite - Portfólio</title>
-                <meta name="description" content="Guilherme Rocha Leite é um desenvolvedor web front-end com muito conhecimento em HTML, CSS e JavaScript, além de ser referência nas plataformas de e-commerce: VTEX, Shopify e Loja Integrada. React JS, Next JS, SASS e Tailwind são exemplos de frameworks e bibliotecas com as quais ele trabalha." />
+                <meta name="description" content={metaDescription} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

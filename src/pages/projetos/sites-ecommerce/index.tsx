@@ -14,6 +14,7 @@ import { MuiTheme } from '@/providers/MuiColors';
 import { CircularProgress } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';   
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { metaDescription } from '@/providers/SiteInfo';
 
 enum platforms{
     all,
@@ -68,7 +69,7 @@ const SitesEcommerce = () => {
         <>
             <Head>
                 <title>Sites de e-commerce | Guilherme Rocha Leite</title>
-                <meta name="description" content="Guilherme Rocha Leite é um desenvolvedor web front-end com muito conhecimento em HTML, CSS e JavaScript, além de ser referência nas plataformas de e-commerce: VTEX, Shopify e Loja Integrada. React JS, Next JS, SASS e Tailwind são exemplos de frameworks e bibliotecas com as quais ele trabalha." />
+                <meta name="description" content={metaDescription} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

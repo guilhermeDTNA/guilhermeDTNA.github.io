@@ -1,4 +1,5 @@
 import NavbarDesktop from "@/components/NavbarDesktop";
+import { metaDescription } from "@/providers/SiteInfo";
 import { Container } from "@mui/material";
 import Head from "next/head";
 import Link from "next/link";
@@ -8,7 +9,7 @@ const PortalUFVJM = () => {
         <>
             <Head>
                 <title>Novo portal da UFVJM | Guilherme Rocha Leite</title>
-                <meta name="description" content="Guilherme Rocha Leite é um desenvolvedor web front-end com muito conhecimento em HTML, CSS e JavaScript, além de ser referência nas plataformas de e-commerce: VTEX, Shopify e Loja Integrada. React JS, Next JS, SASS e Tailwind são exemplos de frameworks e bibliotecas com as quais ele trabalha." />
+                <meta name="description" content={metaDescription} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
