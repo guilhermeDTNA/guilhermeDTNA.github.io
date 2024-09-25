@@ -1,0 +1,46 @@
+@import '../../styles/globals.scss';
+
+.pageContentMiddle{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    @media screen and (min-width: 1025px) {
+        top: -5rem;
+        justify-content: center;
+        height: 100lvh;
+    }
+
+    .content{
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .pageTitle{
+            color: $primary-color;
+        }
+    
+        svg path{
+            fill: $primary-color;
+        }
+    }
+
+    .iframeBox{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 60px;
+        width: 70%;
+        height: auto;
+
+        iframe{
+            width: 100%;
+            height: auto;
+        }
+    }    
+}
