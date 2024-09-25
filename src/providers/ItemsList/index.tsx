@@ -106,7 +106,7 @@ export const experiences = [
         name: "Desenvolvedor Web Front-End",
         company: "Funcional Health Tech",
         companyLink: "https://www.funcionalhealthtech.com.br/",
-        description: "",
+        description: "Desde agosto de 2024, venho trabalhando como desenvolvedor front-end no projeto do Funcional Acesso, um novo sistema da Funcional onde serão concentrados vários recursos diferentes para os usuários.\nDiariamente estou usando ReactJS, TypeScript, Vitest, Tailwind e Material UI para criação das telas e seus comportamentos.",
         period: "Agosto 2024 - presente"
     },
 
@@ -114,7 +114,7 @@ export const experiences = [
         name: "Desenvolvedor Web Front-End",
         company: "Simples. Inovação",
         companyLink: "https://simplesinovacao.com/",
-        description: "Aprimorando constantemente as habilidades já adquiridas.",
+        description: "De agosto de 2021 a agosto de 2024, tive contato frequente com tecnologias voltadas para e-commerce, tais como VTEX, Shopify, VTEX IO e Loja Integrada, além de ter adquirido amplo conhecimento em HTML, CSS e JavaScript (Vanilla, JQuery e React), por necessitar usar tais linguagens nas plataformas citadas.\nPor momentos, trabalhei com PHP para configuração de envio de e-mails e NodeJS para configuração de webservice, mesmo ocupando uma vaga mais voltada ao front-end. Por possuir certo conhecimento em back-end, também consigo ser designado a trabalhar com tecnologias para tal.\nOutras habilidades adquiridas e constantemente aprimoradas são relativas ao relacionamento interpessoal com outros membros da equipe ou fora dela; à definição e cumprimento de prazos e à procura constante em não necessitar de re-trabalho, buscando realizar o melhor serviço sempre.",
         period: "Abril 2022 - Agosto 2024"
     },
 
