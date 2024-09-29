@@ -4,7 +4,7 @@ import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
-import { GoogleReCaptcha, GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { metaDescription } from "@/providers/SiteInfo";
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -28,8 +28,8 @@ const Contato = () => {
     const [sent, setSent] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const isMobile = useMediaQuery('(max-width:1024px)');
-    const { executeRecaptcha } = useGoogleReCaptcha();
     const recaptcha = useRef<ReCAPTCHA>(null);
+    const [captchaValidated, setCaptchaValidated] = useState<boolean>(false);
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -110,42 +110,47 @@ const Contato = () => {
         setModalOpen(false);
     }
 
-    async function getRecaptchaValidation(): Promise<boolean>{
-        const captchaValue = recaptcha?.current?.getValue()
+    async function getRecaptchaValidation(){const captchaValue = recaptcha?.current?.getValue();
         if (!captchaValue) {
-            alert('Por favor, valide o reCAPTCHA')
-            return false;
-        } 
-        
-        console.log('Form submission successful!');
-        const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/captcha`;
-    
-        const res = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({ captchaValue }),
-            headers: {
-              'content-type': 'application/json',
-            },
-        })
-        const data = await res.json()
-        if (data.success) {
-            // make form submission
-            console.log('Form submission successful!');
-            return true;
-        } 
-            
-          console.log('reCAPTCHA validation failed!')
-          return false;
-    }
-
-    async function handleSubmit(e: any){
-        e.preventDefault();
-        
-        const recaptchaValidation = await getRecaptchaValidation();
-        if(!recaptchaValidation){
+            alert('Por favor, valide o reCAPTCHA');
             return;
         }
 
+        try{
+            const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/captcha`;
+            const bodyData = {
+                "captchaValue": captchaValue
+            }
+            const resp = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bodyData)
+            })
+    
+            const status = await resp.status;
+            
+            console.log("FINALIZOU A CHAMADA AO RECAPTCHA")
+            console.log(status);
+
+            if(status === 200){
+                sendEmail();
+                setCaptchaValidated(true);
+            } else{
+                setCaptchaValidated(false);
+                setSent(false);
+                handleOpenModal();
+            }
+        } catch(error) {
+            console.log(error);
+            setCaptchaValidated(false);
+            setSent(false);
+            handleOpenModal();
+        }
+    }
+
+    async function sendEmail(){
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
         
         try{
@@ -164,11 +169,18 @@ const Contato = () => {
             
             const isSent = await resp.status;
             setSent(isSent === 200);
+            setCaptchaValidated(true);
             handleOpenModal();
         } catch(error){
             setSent(false);
+            setCaptchaValidated(true);
             handleOpenModal();
         }
+    }
+
+    function handleSubmit(e: any){
+        e.preventDefault();
+        getRecaptchaValidation();  
     }
 
     function clearFields(){
@@ -338,14 +350,21 @@ const Contato = () => {
                         <Box className={`${sent ? styles.success : styles.fail} ${styles.modalContainer}`}>
                             <Typography className={styles.modalText}>
                                 {sent ? 
-                                "Mensagem enviada com sucesso!" 
+                                    "Mensagem enviada com sucesso!" 
+                                :
+                                    captchaValidated ? <>
+                                        <Typography className={styles.modalText} style={{
+                                            marginBottom: "10px"
+                                        }}>Ocorreu um erro ao enviar a mensagem... 😕️</Typography>
+                                        <Typography className={styles.modalText}>Favor entrar em contato por alguma rede social</Typography>
+                                    </> 
                                 : 
-                                <>
-                                    <Typography className={styles.modalText} style={{
-                                        marginBottom: "10px"
-                                    }}>Ocorreu um erro ao enviar a mensagem... 😕️</Typography>
-                                    <Typography className={styles.modalText}>Favor entrar em contato por alguma rede social</Typography>
-                                </>
+                                    <>
+                                        <Typography className={styles.modalText} style={{
+                                            marginBottom: "10px"
+                                        }}>Ocorreu um problema ao validar o reCAPTCHA</Typography>
+                                        <Typography className={styles.modalText}>Favor marcar a caixa novamente</Typography>
+                                    </>
                                 
                                 }
                             </Typography>
