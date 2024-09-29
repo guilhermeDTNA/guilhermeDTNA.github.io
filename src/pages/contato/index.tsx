@@ -4,8 +4,9 @@ import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
-import { GoogleReCaptcha, GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { metaDescription } from "@/providers/SiteInfo";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const config = {
     api: {
@@ -27,7 +28,8 @@ const Contato = () => {
     const [sent, setSent] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const isMobile = useMediaQuery('(max-width:1024px)');
-    const { executeRecaptcha } = useGoogleReCaptcha();
+    const recaptcha = useRef<ReCAPTCHA>(null);
+    const [captchaValidated, setCaptchaValidated] = useState<boolean>(false);
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -108,51 +110,47 @@ const Contato = () => {
         setModalOpen(false);
     }
 
-    async function getRecaptchaValidation(): Promise<boolean>{
-        if (!executeRecaptcha) {
-            console.error('ReCAPTCHA not available');
-            return false;
+    async function getRecaptchaValidation(){const captchaValue = recaptcha?.current?.getValue();
+        if (!captchaValue) {
+            alert('Por favor, valide o reCAPTCHA');
+            return;
         }
 
-        const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/captcha`;
-    
-        const gRecaptchaToken = await executeRecaptcha('registerSubmit');
-    
-        try {
+        try{
+            const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/captcha`;
+            const bodyData = {
+                "captchaValue": captchaValue
+            }
             const resp = await fetch(url, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({gRecaptchaToken})
+                body: JSON.stringify(bodyData)
             })
+    
+            const status = await resp.status;
+            
+            console.log("FINALIZOU A CHAMADA AO RECAPTCHA")
+            console.log(status);
 
-            console.log(resp)
-
-            const { data } = await resp.json();
-        
-            if (data?.success) {
-                console.log(`Registration success with score: ${data.score}`);
-                return true;
-            } else {
-                console.error(`Registration failure with score: ${data.score}`);
-                return false;
+            if(status === 200){
+                sendEmail();
+                setCaptchaValidated(true);
+            } else{
+                setCaptchaValidated(false);
+                setSent(false);
+                handleOpenModal();
             }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            return false;
+        } catch(error) {
+            console.log(error);
+            setCaptchaValidated(false);
+            setSent(false);
+            handleOpenModal();
         }
     }
 
-    async function sendMail(e: any){
-        e.preventDefault();
-        /*
-        const recaptchaValidation = await getRecaptchaValidation();
-        if(!recaptchaValidation){
-            return;
-        }
-        */
-
+    async function sendEmail(){
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
         
         try{
@@ -171,11 +169,18 @@ const Contato = () => {
             
             const isSent = await resp.status;
             setSent(isSent === 200);
+            setCaptchaValidated(true);
             handleOpenModal();
         } catch(error){
             setSent(false);
+            setCaptchaValidated(true);
             handleOpenModal();
         }
+    }
+
+    function handleSubmit(e: any){
+        e.preventDefault();
+        getRecaptchaValidation();  
     }
 
     function clearFields(){
@@ -187,7 +192,7 @@ const Contato = () => {
     }
 
     return(
-        <GoogleReCaptchaProvider reCaptchaKey={`${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}>
+        <>
             <Head>
                 <title>Contato | Guilherme Rocha Leite</title>
                 <meta name="description" content={metaDescription} />
@@ -201,7 +206,7 @@ const Contato = () => {
                     <h3 className={styles.contactTitle}>Envie uma mensagem</h3>
 
                     <section className={styles.sectionContact}>
-                        <form method="POST" className={styles.contactForm} onSubmit={sendMail}>
+                        <form method="POST" className={styles.contactForm} onSubmit={handleSubmit}>
                             <Box className={styles.contactFormBody}>
                                 <Box className={`${styles.formLine}`}>
                                     <fieldset>
@@ -300,7 +305,7 @@ const Contato = () => {
                                 </Button>
                             </Box>
                             
-                            <GoogleReCaptcha onVerify={() => {}} action="page_view" />
+                            <ReCAPTCHA ref={recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} />
                         </form>
                     </section>
 
@@ -345,14 +350,21 @@ const Contato = () => {
                         <Box className={`${sent ? styles.success : styles.fail} ${styles.modalContainer}`}>
                             <Typography className={styles.modalText}>
                                 {sent ? 
-                                "Mensagem enviada com sucesso!" 
+                                    "Mensagem enviada com sucesso!" 
+                                :
+                                    captchaValidated ? <>
+                                        <Typography className={styles.modalText} style={{
+                                            marginBottom: "10px"
+                                        }}>Ocorreu um erro ao enviar a mensagem... 😕️</Typography>
+                                        <Typography className={styles.modalText}>Favor entrar em contato por alguma rede social</Typography>
+                                    </> 
                                 : 
-                                <>
-                                    <Typography className={styles.modalText} style={{
-                                        marginBottom: "10px"
-                                    }}>Ocorreu um erro ao enviar a mensagem... 😕️</Typography>
-                                    <Typography className={styles.modalText}>Favor entrar em contato por alguma rede social</Typography>
-                                </>
+                                    <>
+                                        <Typography className={styles.modalText} style={{
+                                            marginBottom: "10px"
+                                        }}>Ocorreu um problema ao validar o reCAPTCHA</Typography>
+                                        <Typography className={styles.modalText}>Favor marcar a caixa novamente</Typography>
+                                    </>
                                 
                                 }
                             </Typography>
@@ -360,7 +372,7 @@ const Contato = () => {
                     </Modal>
                 </Container>
             </main>
-        </GoogleReCaptchaProvider>
+        </>
     )
 }
 
