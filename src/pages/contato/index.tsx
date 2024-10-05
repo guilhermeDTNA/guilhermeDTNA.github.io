@@ -7,7 +7,7 @@ import { socialItems } from "@/providers/ItemsList";
 import { metaDescription } from "@/providers/SiteInfo";
 import ReCAPTCHA from 'react-google-recaptcha';
 import * as yup from 'yup';
-import phoneNumber from "./utils/validations";
+import { phoneNumber } from "../../utils/validations";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import InputMask from 'react-input-mask';
