@@ -4,15 +4,25 @@ import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { metaDescription } from "@/providers/SiteInfo";
 import ReCAPTCHA from 'react-google-recaptcha';
+import * as yup from 'yup';
+import { PhoneNumber } from './utils/validations';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
 
 export const config = {
     api: {
       bodyParser: false,
     },
 };
+
+const validationSchema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    phone: yup.string().matches(PhoneNumber),
+    message: yup.string().max(500).required()
+})
 
 const Contato = () => {
     const maxCharacters = 500;
@@ -21,10 +31,6 @@ const Contato = () => {
     const charactersSpan = useRef<HTMLSpanElement>(null);
     const [charactersLeft, setCharactersLeft] = useState<number>(maxCharacters);
     const [file, setFile] = useState<File | null>(null);
-    const [name, setName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phone, setPhone] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
     const [sent, setSent] = useState<boolean>(false);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const isMobile = useMediaQuery('(max-width:1024px)');
@@ -84,24 +90,7 @@ const Contato = () => {
         
     }
 
-    function handleName(e: any){
-        setName(e?.target?.value);
-    }
-
-    function handleEmail(e: any){
-        setEmail(e?.target?.value);
-    }
-
-    function handlePhone(e: any){
-        setPhone(e?.target?.value);
-    }
-
-    function handleMessage(e: any){
-        setMessage(e?.target?.value);
-    }
-
     function handleOpenModal(){
-        sent && clearFields();
         setModalOpen(true);
         setTimeout(handleCloseModal, 7000);
     }
@@ -130,9 +119,6 @@ const Contato = () => {
             })
     
             const status = await resp.status;
-            
-            console.log("FINALIZOU A CHAMADA AO RECAPTCHA")
-            console.log(status);
 
             if(status === 200){
                 sendEmail();
@@ -143,16 +129,39 @@ const Contato = () => {
                 handleOpenModal();
             }
         } catch(error) {
-            console.log(error);
+            console.error(error);
             setCaptchaValidated(false);
             setSent(false);
             handleOpenModal();
         }
     }
 
+    function onSubmit(){
+        getRecaptchaValidation();  
+    }
+
+    function onError(error: any){
+        console.error(error);
+    }
+
+    const { register, handleSubmit, getValues, formState: { errors } } = useForm({
+        defaultValues: {
+            name: "",
+            email: "",
+            phone: "",
+            message: ""
+        },
+        resolver: yupResolver(validationSchema)
+    })
+
     async function sendEmail(){
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
-        
+        console.log(JSON.stringify({
+            name: getValues().name,
+            email: getValues().email,
+            phone: getValues().phone,
+            message: getValues().message.replaceAll("\n", `<br />`)
+        }))
         try{
             const resp = await fetch(url, {
                 method: "POST",
@@ -160,10 +169,10 @@ const Contato = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name,
-                    email,
-                    phone,
-                    message
+                    name: getValues().name,
+                    email: getValues().email,
+                    phone: getValues().phone,
+                    message: getValues().message.replaceAll("\n", `<br />`)
                 })
             })
             
@@ -176,19 +185,6 @@ const Contato = () => {
             setCaptchaValidated(true);
             handleOpenModal();
         }
-    }
-
-    function handleSubmit(e: any){
-        e.preventDefault();
-        getRecaptchaValidation();  
-    }
-
-    function clearFields(){
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("")
-        setFile(null);
     }
 
     return(
@@ -206,7 +202,7 @@ const Contato = () => {
                     <h3 className={styles.contactTitle}>Envie uma mensagem</h3>
 
                     <section className={styles.sectionContact}>
-                        <form method="POST" className={styles.contactForm} onSubmit={handleSubmit}>
+                        <form method="POST" className={styles.contactForm} onSubmit={handleSubmit(onSubmit, onError)}>
                             <Box className={styles.contactFormBody}>
                                 <Box className={`${styles.formLine}`}>
                                     <fieldset>
@@ -214,14 +210,12 @@ const Contato = () => {
                                             <span className="required">*</span>
                                         </label>
                                         <input 
-                                        type="text" 
-                                        placeholder="Nome" 
-                                        name="nome_autor" 
-                                        id="nome_autor"
-                                        required
-                                        onChange={handleName}    
-                                        value={name}
-                                    />
+                                            type="text" 
+                                            placeholder="Nome" 
+                                            id="nome_autor"
+                                            {...register('name')}
+                                        />
+                                        {errors?.name?.type && <Typography>Houve um erro aqui</Typography>}
                                     </fieldset>
 
                                     <fieldset>
@@ -229,26 +223,23 @@ const Contato = () => {
                                             <span className="required">*</span>
                                         </label>
                                         <input 
-                                        type="email" 
-                                        placeholder="E-mail" 
-                                        name="email_autor" 
-                                        id="email_autor" 
-                                        required
-                                        onChange={handleEmail}
-                                        value={email}
-                                    />
+                                            type="text" 
+                                            placeholder="E-mail" 
+                                            id="email_autor" 
+                                            {...register('email')}
+                                        />
+                                    {errors?.email?.type && <Typography>Houve um erro aqui</Typography>}
                                     </fieldset>
 
                                     <fieldset>
                                         <label htmlFor="telefone_autor">Telefone</label>
                                         <input 
-                                            type="text" 
+                                            type="tel" 
                                             id="telefone_autor" 
                                             placeholder="Telefone" 
-                                            name="telefone_autor" 
-                                            onChange={handlePhone}
-                                            value={phone}    
+                                            {...register('phone')}  
                                         />
+                                        {errors?.phone?.type && <Typography>Houve um erro aqui</Typography>}
                                     </fieldset>
                                 </Box>
 
@@ -264,38 +255,46 @@ const Contato = () => {
                                             rows={3} 
                                             cols={6} 
                                             placeholder="Mensagem" 
-                                            name="conteudo" 
                                             id="texto" 
-                                            required
                                             onKeyUp={limitTextarea}
-                                            onChange={handleMessage}
-                                            value={message}
+                                            {...register('message')}
                                         ></textarea>
-                                        {!file?.name ? 
-                                            <input
-                                                style={{
-                                                    display: "none"
-                                                }}
-                                                value=""
-                                                ref={inputFile} 
-                                                onChange={handleChange} 
-                                                name="arquivo" 
-                                                type="file" 
-                                                id="arquivo" 
-                                            />
-                                        : 
-                                            <input
-                                                style={{
-                                                    display: "none"
-                                                }}
-                                                ref={inputFile} 
-                                                onChange={handleChange} 
-                                                name="arquivo" 
-                                                type="file" 
-                                                id="arquivo" 
-                                            />
-                                        }
+                                        {errors?.message?.type && <Typography>Houve um erro aqui</Typography>}
                                     </fieldset>
+
+                                    {!file?.name ? 
+                                            <fieldset
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                            >
+                                                <input
+                                                    value=""
+                                                    ref={inputFile} 
+                                                    onChange={handleChange} 
+                                                    name="arquivo" 
+                                                    type="file" 
+                                                    id="arquivo" 
+                                                />
+                                            </fieldset>
+                                        :
+                                        <fieldset
+                                            style={{
+                                                display: "none"
+                                            }}
+                                        >
+                                            <input
+                                                style={{
+                                                    display: "none"
+                                                }}
+                                                ref={inputFile} 
+                                                onChange={handleChange} 
+                                                name="arquivo" 
+                                                type="file" 
+                                                id="arquivo" 
+                                            />
+                                        </fieldset>
+                                        }
                                 </Box>
                             </Box>
 
