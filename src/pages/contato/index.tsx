@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { PhoneNumber } from './utils/validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
+import InputMask from 'react-input-mask';
 
 export const config = {
     api: {
@@ -20,7 +21,7 @@ export const config = {
 const validationSchema = yup.object({
     name: yup.string().required(),
     email: yup.string().email().required(),
-    phone: yup.string().matches(PhoneNumber),
+    phone: yup.string().matches(PhoneNumber).required(),
     message: yup.string().max(500).required()
 })
 
@@ -36,6 +37,13 @@ const Contato = () => {
     const isMobile = useMediaQuery('(max-width:1024px)');
     const recaptcha = useRef<ReCAPTCHA>(null);
     const [captchaValidated, setCaptchaValidated] = useState<boolean>(false);
+
+    const initialValues = {
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    }
 
     function handleChange(event: any){
         setFile(event?.target?.files[0]);        
@@ -144,24 +152,14 @@ const Contato = () => {
         console.error(error);
     }
 
-    const { register, handleSubmit, getValues, formState: { errors } } = useForm({
-        defaultValues: {
-            name: "",
-            email: "",
-            phone: "",
-            message: ""
-        },
+    const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm({
+        defaultValues: initialValues,
         resolver: yupResolver(validationSchema)
     })
 
     async function sendEmail(){
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
-        console.log(JSON.stringify({
-            name: getValues().name,
-            email: getValues().email,
-            phone: getValues().phone,
-            message: getValues().message.replaceAll("\n", `<br />`)
-        }))
+
         try{
             const resp = await fetch(url, {
                 method: "POST",
@@ -180,6 +178,12 @@ const Contato = () => {
             setSent(isSent === 200);
             setCaptchaValidated(true);
             handleOpenModal();
+            if(isSent){
+                setValue("name", initialValues.name);
+                setValue("email", initialValues.email);
+                setValue("phone", initialValues.phone);
+                setValue("message", initialValues.message);
+            }
         } catch(error){
             setSent(false);
             setCaptchaValidated(true);
@@ -211,11 +215,11 @@ const Contato = () => {
                                         </label>
                                         <input 
                                             type="text" 
-                                            placeholder="Nome" 
+                                            placeholder="Ex.: Givanildo Sousa" 
                                             id="nome_autor"
                                             {...register('name')}
                                         />
-                                        {errors?.name?.type && <Typography>Houve um erro aqui</Typography>}
+                                        {errors?.name?.type && <Typography className={styles.errorField}>Preencha corretamente este campo</Typography>}
                                     </fieldset>
 
                                     <fieldset>
@@ -224,22 +228,26 @@ const Contato = () => {
                                         </label>
                                         <input 
                                             type="text" 
-                                            placeholder="E-mail" 
+                                            placeholder="Ex.: teste@teste.com" 
                                             id="email_autor" 
                                             {...register('email')}
                                         />
-                                    {errors?.email?.type && <Typography>Houve um erro aqui</Typography>}
+                                    {errors?.email?.type && <Typography className={styles.errorField}>Preencha corretamente este campo</Typography>}
                                     </fieldset>
 
                                     <fieldset>
-                                        <label htmlFor="telefone_autor">Telefone</label>
-                                        <input 
+                                        <label htmlFor="telefone_autor">
+                                            Telefone
+                                            <span className="required">*</span>    
+                                        </label>
+                                        <InputMask 
                                             type="tel" 
                                             id="telefone_autor" 
-                                            placeholder="Telefone" 
-                                            {...register('phone')}  
+                                            placeholder="Ex.: (99) 99999-9999" 
+                                            {...register('phone')}
+                                            mask="(99) 99999-9999"  
                                         />
-                                        {errors?.phone?.type && <Typography>Houve um erro aqui</Typography>}
+                                        {errors?.phone?.type && <Typography className={styles.errorField}>Preencha corretamente este campo</Typography>}
                                     </fieldset>
                                 </Box>
 
@@ -254,12 +262,12 @@ const Contato = () => {
                                             maxLength={maxCharacters} 
                                             rows={3} 
                                             cols={6} 
-                                            placeholder="Mensagem" 
+                                            placeholder="Deixe aqui sua mensagem" 
                                             id="texto" 
                                             onKeyUp={limitTextarea}
                                             {...register('message')}
                                         ></textarea>
-                                        {errors?.message?.type && <Typography>Houve um erro aqui</Typography>}
+                                        {errors?.message?.type && <Typography className={styles.errorField}>Preencha corretamente este campo</Typography>}
                                     </fieldset>
 
                                     {!file?.name ? 
@@ -298,13 +306,17 @@ const Contato = () => {
                                 </Box>
                             </Box>
 
-                            <Box className={styles.submitArea}>
-                                <Button ref={btnSubmit} type="submit">
-                                    Enviar Mensagem
-                                </Button>
+                            <Box className={styles.formBottom}>
+                                <Box className={styles.captchaArea}>
+                                    <ReCAPTCHA ref={recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} />
+                                </Box>
+
+                                <Box className={styles.submitArea}>
+                                    <Button ref={btnSubmit} type="submit">
+                                        Enviar Mensagem
+                                    </Button>
+                                </Box>
                             </Box>
-                            
-                            <ReCAPTCHA ref={recaptcha} sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} />
                         </form>
                     </section>
 

@@ -31,7 +31,7 @@
         width: 100%;
         background-color: $blue;
         padding-top: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 35px;
 
         .formLine,
         .formBlock{
@@ -40,6 +40,7 @@
                 text-align: center;
                 display: flex;
                 flex-direction: column;
+                position: relative;
 
                 @media screen and (min-width: 1025px) {
                     text-align: left;
@@ -66,17 +67,33 @@
                     width: 100%;
                     max-width: -webkit-fill-available;
                     resize: none;
+                    letter-spacing: 1px;
+
+                    &::placeholder{
+                        font-size: 16px;
+                        letter-spacing: 1px;
+                    }
                     
                     @media screen and (min-width: 1025px) {
                         font-size: 18px;
                     }
+                }
+
+                .errorField{
+                    color: $error-color;
+                    font-size: 14px;
+                    position: absolute;
+                    top: calc(100% + 5px);
+                    display: block;
+                    width: 100%;
+                    text-align: left;
                 }
             }
         }
 
         .formLine{
             display: grid;
-            gap: 10px;
+            gap: 25px;
             grid-template-columns: 1fr;
             padding: 0 13px;
 
@@ -89,7 +106,7 @@
         }
 
         .formBlock{
-            margin-top: 20px;
+            margin-top: 30px;
             padding: 0 13px;
 
             @media screen and (min-width: 1366px) {
@@ -140,35 +157,59 @@
         }
     }
 
-    .submitArea{
-        text-align: center;
+    .formBottom{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 35px;
+        min-height: 78px;
+        flex-direction: column;
 
-        button[type="submit"]{
-            -webkit-box-shadow: 0px 3px 4px rgb(0 0 0 / 30%);
-            box-shadow: 0px 3px 4px rgb(0 0 0 / 30%);
-            border: none;
-            -webkit-transition: all .3s;
-            -o-transition: all .3s;
-            transition: all .3s;
-            font-weight: 600;
-            color: $dark-blue;
-            background-color: $light-green;
-            padding: 13px 15px;
-            line-height: normal;
-            font-size: 17px;
+        @media screen and (min-width: 1200px) {
+            flex-direction: row;
+        }
 
-            &:hover{
-                background-color: $primary-color;
-                color: $white;
+        .submitArea{
+            text-align: center;
+    
+            button[type="submit"]{
+                -webkit-box-shadow: 0px 3px 4px rgb(0 0 0 / 30%);
+                box-shadow: 0px 3px 4px rgb(0 0 0 / 30%);
+                border: none;
+                -webkit-transition: all .3s;
+                -o-transition: all .3s;
+                transition: all .3s;
+                font-weight: 600;
+                color: $dark-blue;
+                background-color: $light-green;
+                padding: 13px 15px;
+                line-height: normal;
+                font-size: 17px;
+    
+                &:hover{
+                    background-color: $primary-color;
+                    color: $white;
+                }
+    
+                span{
+                    display: none;
+                }
             }
+        }
+        
+        .captchaArea{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 35px;
 
-            span{
-                display: none;
+            @media screen and (min-width: 1200px) {
+                position: absolute;
+                left: 0;
+                margin-bottom: 0;
             }
         }
     }
-    
 }
 
 :global(.body){
