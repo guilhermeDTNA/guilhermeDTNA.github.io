@@ -312,7 +312,7 @@ const Contato = () => {
                                 </Box>
 
                                 <Box className={styles.submitArea}>
-                                    <Button ref={btnSubmit} type="submit">
+                                    <Button ref={btnSubmit} type="submit" id="send-message">
                                         Enviar Mensagem
                                     </Button>
                                 </Box>
