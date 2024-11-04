@@ -23,7 +23,7 @@ const NavbarDesktop = () => {
         <Box className={styles.navbarDesk}>
             <figure>
                 <Link href="/">
-                    <Image src={profile} alt="Foto" className={styles.profile} style={{
+                    <Image id="profile-img" src={profile} alt="Foto" className={styles.profile} style={{
                         width: '100%',
                         height: 'auto'
                     }} />
