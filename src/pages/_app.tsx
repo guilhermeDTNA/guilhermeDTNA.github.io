@@ -9,10 +9,12 @@ import HeaderMobile from "@/components/HeaderMobile";
 import CookiesAdvise from "@/components/CookiesAdvise";
 import Analytics from "@/components/Analytics";
 import Clarity from "@/components/Clarity";
+import { TagManagerBody, TagManagerHeader } from "@/components/TagManager";
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
+            <TagManagerHeader />
             <Clarity />
 
             <ContrastProvider>
@@ -26,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </ContrastProvider>
 
             <Analytics />
+            <TagManagerBody />
         </>
     );
 }
