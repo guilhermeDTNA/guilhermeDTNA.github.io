@@ -25,7 +25,7 @@ const Projects = () => {
                 </ul>
 
                 <Typography>
-                    Para mais projetos, não oficiais e de caráter estudantil, <Link href="https://github.com/guilhermeDTNA" target="_blank">visite o meu Github</Link>.
+                    Para mais projetos, não oficiais e de caráter estudantil, <Link href="https://github.com/guilhermeDTNA" target="_blank" id="link-github-projects">visite o meu Github</Link>.
                 </Typography>
             </Box>
         </section>

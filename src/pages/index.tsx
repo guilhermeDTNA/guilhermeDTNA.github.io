@@ -51,7 +51,7 @@ export default function Home() {
                             </p>
                             <br />
                             <p>
-                                Para maiores detalhes, <Link target="_blank" href="/Currículo-GuilhermeRochaLeite-Portfólio.pdf" locale={false}>faça o download do meu currículo</Link>.
+                                Para maiores detalhes, <Link target="_blank" href="/Currículo-GuilhermeRochaLeite-Portfólio.pdf" locale={false} id="curriculum-download">faça o download do meu currículo</Link>.
                             </p>
                         </Box>
                     </section>

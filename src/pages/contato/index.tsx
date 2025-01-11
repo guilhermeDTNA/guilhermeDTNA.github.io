@@ -329,7 +329,7 @@ const Contato = () => {
                             <ul className={styles.socialItems}>
                                 {socialItems.map((item, key) => (
                                     <li key={key}>
-                                        <a title={item.name} href={item.link} target="_blank">
+                                        <a title={item.name} href={item.link} target="_blank" id={`link-${item.name}`}>
                                             {item.icon}
                                         </a>
                                     </li>
