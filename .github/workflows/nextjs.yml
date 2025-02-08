@@ -82,6 +82,7 @@ jobs:
           NEXT_PUBLIC_MAIL_SERVER: ${{ secrets.NEXT_PUBLIC_MAIL_SERVER }}
           NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
           RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
+          NEXT_PUBLIC_ENABLE_RECAPTCHA: ${{ secrets.NEXT_PUBLIC_ENABLE_RECAPTCHA }}
           NEXT_PUBLIC_GTM: ${{ secrets.NEXT_PUBLIC_GTM }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
