@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Box, Button, Container, Modal, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, CircularProgress, Container, Modal, Typography, useMediaQuery } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
 import styles from './styles.module.scss';
 import { useRef, useState } from "react";
@@ -37,6 +37,7 @@ const Contato = () => {
     const isMobile = useMediaQuery('(max-width:1024px)');
     const recaptcha = useRef<ReCAPTCHA>(null);
     const [captchaValidated, setCaptchaValidated] = useState<boolean>(false);
+    const [sendingEmail, setSendingEmail] = useState<boolean>(false);
 
     const initialValues = {
         name: "",
@@ -109,6 +110,7 @@ const Contato = () => {
 
     async function getRecaptchaValidation(){const captchaValue = recaptcha?.current?.getValue();
         if (!captchaValue) {
+            setSendingEmail(false);
             alert('Por favor, valide o reCAPTCHA');
             return;
         }
@@ -138,6 +140,7 @@ const Contato = () => {
             }
         } catch(error) {
             console.error(error);
+            setSendingEmail(false);
             setCaptchaValidated(false);
             setSent(false);
             handleOpenModal();
@@ -145,7 +148,8 @@ const Contato = () => {
     }
 
     function onSubmit(){
-        getRecaptchaValidation();  
+        setSendingEmail(true);
+        process.env.NEXT_PUBLIC_ENABLE_RECAPTCHA === "true" ? getRecaptchaValidation() : sendEmail();
     }
 
     function onError(error: any){
@@ -188,6 +192,8 @@ const Contato = () => {
             setSent(false);
             setCaptchaValidated(true);
             handleOpenModal();
+        } finally{
+            setSendingEmail(false);
         }
     }
 
@@ -313,7 +319,7 @@ const Contato = () => {
 
                                 <Box className={styles.submitArea}>
                                     <Button ref={btnSubmit} type="submit" id="send-message">
-                                        Enviar Mensagem
+                                        {sendingEmail ? <CircularProgress className={styles.circularProgress} /> : "Enviar Mensagem"}
                                     </Button>
                                 </Box>
                             </Box>
