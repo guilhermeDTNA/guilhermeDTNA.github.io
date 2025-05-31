@@ -1,16 +1,16 @@
-import Head from "next/head";
-import { Box, Button, CircularProgress, Container, Modal, Typography, useMediaQuery } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
-import styles from './styles.module.scss';
-import { useRef, useState } from "react";
 import { socialItems } from "@/providers/ItemsList";
 import { metaDescription } from "@/providers/SiteInfo";
-import ReCAPTCHA from 'react-google-recaptcha';
-import * as yup from 'yup';
-import { phoneNumber } from "../../utils/validations";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, Button, CircularProgress, Container, Modal, Typography, useMediaQuery } from "@mui/material";
+import Head from "next/head";
+import { useRef, useState } from "react";
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from "react-hook-form";
 import InputMask from 'react-input-mask';
+import * as yup from 'yup';
+import { phoneNumber } from "../../utils/validations";
+import styles from './styles.module.scss';
 
 export const config = {
     api: {
@@ -178,7 +178,7 @@ const Contato = () => {
                 })
             })
             
-            const isSent = await resp.status;
+            const isSent = resp.status;
             setSent(isSent === 200);
             setCaptchaValidated(true);
             handleOpenModal();
@@ -192,6 +192,7 @@ const Contato = () => {
             setSent(false);
             setCaptchaValidated(true);
             handleOpenModal();
+            onError("Erro ao enviar e-mail: " + error);
         } finally{
             setSendingEmail(false);
         }
