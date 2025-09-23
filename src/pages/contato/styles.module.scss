@@ -245,9 +245,12 @@
                 gap: 40px;
             }
 
-            a{
+            button{
                 transition: all .3s;
                 display: flex;
+                border: none;
+                background: none;
+                color: $primary-color;
 
                 &:hover{
                     transform: scale(1.2);

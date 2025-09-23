@@ -1,20 +1,20 @@
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-    faHtml5,
+import {
+    faAngular,
     faCss3Alt,
+    faDocker,
+    faHtml5,
+    faJava,
     faJs,
     faReact,
-    faShopify,
     faSass,
-    faJava,
-    faDocker,
-    faAngular
+    faShopify
 } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 import barracredImage from '@/assets/img/stores/barracred.gif';
 import dreamImage from '@/assets/img/stores/dream.gif';
@@ -25,6 +25,7 @@ import novvoImage from '@/assets/img/stores/novvo.gif';
 import occhialeriaImage from '@/assets/img/stores/occhialeria.gif';
 import ryziImage from '@/assets/img/stores/ryzi.gif';
 import tecfagImage from '@/assets/img/stores/tecfag.gif';
+import { ItemsListProps } from './itemsList.interface';
 
 const vtexIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="189.7224690622575 186.14 1181.6090127435018 435.06000000000006">
     <g fill="currentColor">
@@ -32,7 +33,7 @@ const vtexIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="189.7224690622
     </g>
 </svg>;
 
-export const menuItems = [
+export const menuItems: ItemsListProps[] = [
     {
         name: "Sobre",
         link: "#sobre"

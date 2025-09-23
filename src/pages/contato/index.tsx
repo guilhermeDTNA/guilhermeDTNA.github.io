@@ -1,5 +1,6 @@
 import NavbarDesktop from "@/components/NavbarDesktop";
 import { socialItems } from "@/providers/ItemsList";
+import { ItemsListProps } from "@/providers/ItemsList/itemsList.interface";
 import { metaDescription } from "@/providers/SiteInfo";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, CircularProgress, Container, Modal, Typography, useMediaQuery } from "@mui/material";
@@ -160,6 +161,15 @@ const Contato = () => {
         defaultValues: initialValues,
         resolver: yupResolver(validationSchema)
     })
+
+    function handleSocialClick(item: ItemsListProps){
+        (window as any).dataLayer.push({
+            'event': 'click_social_network',
+            'social_network_name': item.name
+        });
+
+        window.open(item.link, "_blank");
+    }
 
     async function sendEmail(){
         const url = `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/send`;
@@ -336,9 +346,9 @@ const Contato = () => {
                             <ul className={styles.socialItems}>
                                 {socialItems.map((item, key) => (
                                     <li key={key}>
-                                        <a title={item.name} href={item.link} target="_blank" id={`link-${item.name}`}>
+                                        <Button title={item.name} onClick={() => handleSocialClick(item)}>
                                             {item.icon}
-                                        </a>
+                                        </Button>
                                     </li>
                                 ))}
                             </ul>
