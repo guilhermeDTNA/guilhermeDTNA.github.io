@@ -70,7 +70,7 @@ export const menuItems: ItemsListProps[] = [
     }
 ];
 
-export const socialItems = [
+export const socialItems: (ItemsListProps & { icon: JSX.Element })[] = [
     {
         name: "LinkedIn",
         link: "https://www.linkedin.com/in/guilherme-rocha-leite/",
@@ -104,11 +104,19 @@ export const socialItems = [
 
 export const experiences = [
     {
+        name: "Analista de Tecnologia da Informação",
+        company: "Universidade Federal dos Vales do Jequitinhonha e Mucuri (UFVJM)",
+        companyLink: "https://portal.ufvjm.edu.br/",
+        description: "Em andamento...",
+        period: "Outubro 2025 - presente"
+    },
+    
+    {
         name: "Desenvolvedor Web Front-End",
         company: "Funcional Health Tech",
         companyLink: "https://www.funcionalhealthtech.com.br/",
-        description: "Desde agosto de 2024, venho trabalhando como desenvolvedor front-end no projeto do Funcional Acesso, um novo sistema da Funcional onde serão concentrados vários recursos diferentes para os usuários.\nDiariamente estou usando ReactJS, TypeScript, Vitest, Tailwind e Material UI para criação das telas e seus comportamentos.",
-        period: "Agosto 2024 - presente"
+        description: "Desenvolvimento com foco maior em front-end, utilizando React, Typescript, Tailwind e Vitest.\nTambém considerável atuação no back-end, com NestJS, GraphQL, SQL, C# e Visual Basic.\nPara análise de eventos de usuários nos sistemas, realizei a integração dos mesmos com o Google Analytics (GA4) e o Google Tag Manager (GTM), auxiliando a empresa na criação e mensuração de eventos personalizados.\nRazoável manipulação de bancos de dados relacionais, com criação de scripts e alteração em procedures já existentes.\nAtuação em times ágeis, nos quais a prática de code review era obrigatória e os seguintes ritos eram seguidos à risca: daily, reabastecimento, refinamento, retrospectiva e planning poker.",
+        period: "Agosto 2024 - Outubro 2025"
     },
 
     {
