@@ -112,7 +112,7 @@ export const experiences = [
     },
     
     {
-        name: "Desenvolvedor Web Front-End",
+        name: "Desenvolvedor Web Front-End Pleno",
         company: "Funcional Health Tech",
         companyLink: "https://www.funcionalhealthtech.com.br/",
         description: "Desenvolvimento com foco maior em front-end, utilizando React, Typescript, Tailwind e Vitest.\nTambém considerável atuação no back-end, com NestJS, GraphQL, SQL, C# e Visual Basic.\nPara análise de eventos de usuários nos sistemas, realizei a integração dos mesmos com o Google Analytics (GA4) e o Google Tag Manager (GTM), auxiliando a empresa na criação e mensuração de eventos personalizados.\nRazoável manipulação de bancos de dados relacionais, com criação de scripts e alteração em procedures já existentes.\nAtuação em times ágeis, nos quais a prática de code review era obrigatória e os seguintes ritos eram seguidos à risca: daily, reabastecimento, refinamento, retrospectiva e planning poker.",
