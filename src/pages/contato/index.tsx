@@ -196,6 +196,7 @@ const Contato = () => {
                 setValue("name", initialValues.name);
                 setValue("email", initialValues.email);
                 setValue("phone", initialValues.phone);
+                setCharactersLeft(maxCharacters);
                 setValue("message", initialValues.message);
             }
         } catch(error){
