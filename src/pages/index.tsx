@@ -1,14 +1,14 @@
-import Head from "next/head";
-import styles from "./Home/Home.module.scss";
-import { Box, Container, Divider, Typography } from "@mui/material";
 import NavbarDesktop from "@/components/NavbarDesktop";
-import Link from "next/link";
-import Experience from "./Home/components/Experience";
-import Education from "./Home/components/Education";
-import Certification from "./Home/components/Certifications";
-import Skills from "./Home/components/Skills";
-import Projects from "./Home/components/Projects";
 import { metaDescription } from "@/providers/SiteInfo";
+import { Box, Container, Divider, Typography } from "@mui/material";
+import Head from "next/head";
+import Link from "next/link";
+import Certification from "./Home/components/Certifications";
+import Education from "./Home/components/Education";
+import Experience from "./Home/components/Experience";
+import Projects from "./Home/components/Projects";
+import Skills from "./Home/components/Skills";
+import styles from "./Home/Home.module.scss";
 
 export default function Home() {
     return (
@@ -39,11 +39,7 @@ export default function Home() {
                             </p>
 
                             <p>
-                                Recentemente me tornei bacharel em Sistemas de Informação pela Universidade Federal dos Vales do Jequitinhonha e Mucuri - UFVJM - e hoje me sinto privilegiado por poder trabalhar com algo que aperfeiçoei durante todo esse período: o desenvolvimento web.
-                            </p>
-
-                            <p>
-                                Atualmente sou desenvolvedor web front-end na <Link href="https://www.funcionalhealthtech.com.br/" target="_blank">Funcional Health Tech</Link> e tenho trabalhado com ReactJS, Tailwind, Jenkins e Vitest.
+                                Em 2022, me tornei bacharel em Sistemas de Informação pela <Link href="https://portal.ufvjm.edu.br/" target="_blank">Universidade Federal dos Vales do Jequitinhonha e Mucuri (UFVJM)</Link> e hoje me sinto agraciado por ter a honra de ser servidor federal nela e poder trabalhar com TI, mais precisamente com desenvolvimento web.
                             </p>
 
                             <p>
