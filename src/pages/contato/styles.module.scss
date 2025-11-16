@@ -236,36 +236,44 @@
 
         .socialItems{
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10%;
             margin-top: 20px;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
 
             @media screen and (min-width: 992px) {
                 gap: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            button{
-                transition: all .3s;
-                display: flex;
-                border: none;
-                background: none;
-                color: $primary-color;
+            li{
+                flex: 1;
 
-                &:hover{
-                    transform: scale(1.2);
-                }
+                button{
+                    transition: all .3s;
+                    display: flex;
+                    border: none;
+                    background: none;
+                    color: $primary-color;
+                    margin: 0 auto;
 
-                svg{
-                    width: 37px;
-                    height: auto;
-
-                    @media screen and (min-width: 992px) {
-                        width: 42px;
+                    &:hover{
+                        transform: scale(1.2);
                     }
 
-                    @media screen and (min-width: 1025px) {
-                        width: 47px;
+                    svg{
+                        width: 37px;
+                        height: auto;
+
+                        @media screen and (min-width: 992px) {
+                            width: 42px;
+                        }
+
+                        @media screen and (min-width: 1025px) {
+                            width: 47px;
+                        }
                     }
                 }
             }
