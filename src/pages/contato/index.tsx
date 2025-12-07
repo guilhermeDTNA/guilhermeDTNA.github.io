@@ -7,8 +7,8 @@ import { Box, Button, CircularProgress, Container, Modal, Typography, useMediaQu
 import Head from "next/head";
 import { useRef, useState } from "react";
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useForm } from "react-hook-form";
-import InputMask from 'react-input-mask';
+import { Controller, useForm } from "react-hook-form";
+import { IMaskInput } from 'react-imask';
 import * as yup from 'yup';
 import { phoneNumber } from "../../utils/validations";
 import styles from './styles.module.scss';
@@ -157,7 +157,7 @@ const Contato = () => {
         console.error(error);
     }
 
-    const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm({
+    const { register, handleSubmit, getValues, reset, control, formState: { errors } } = useForm({
         defaultValues: initialValues,
         resolver: yupResolver(validationSchema)
     })
@@ -193,11 +193,8 @@ const Contato = () => {
             setCaptchaValidated(true);
             handleOpenModal();
             if(isSent){
-                setValue("name", initialValues.name);
-                setValue("email", initialValues.email);
-                setValue("phone", initialValues.phone);
                 setCharactersLeft(maxCharacters);
-                setValue("message", initialValues.message);
+                reset(initialValues);
             }
         } catch(error){
             setSent(false);
@@ -258,12 +255,20 @@ const Contato = () => {
                                             Telefone
                                             <span className="required">*</span>    
                                         </label>
-                                        <InputMask 
-                                            type="tel" 
-                                            id="telefone_autor" 
-                                            placeholder="Ex.: (99) 99999-9999" 
-                                            {...register('phone')}
-                                            mask="(99) 99999-9999"  
+                                        <Controller
+                                            name="phone"
+                                            control={control}
+                                            render={({ field: { ref, ...field } }) => (
+                                                <IMaskInput
+                                                    {...field}
+                                                    inputRef={ref}
+                                                    type="tel"
+                                                    id="telefone_autor"
+                                                    placeholder="Ex.: (99) 99999-9999"
+                                                    mask="(00) 00000-0000"
+                                                    onAccept={(value) => field.onChange(value)}
+                                                />
+                                            )}
                                         />
                                         {errors?.phone?.type && <Typography className={styles.errorField}>Preencha corretamente este campo</Typography>}
                                     </fieldset>
