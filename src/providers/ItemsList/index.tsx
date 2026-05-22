@@ -24,6 +24,7 @@ import jvImage from '@/assets/img/stores/jv.gif';
 import novvoImage from '@/assets/img/stores/novvo.gif';
 import occhialeriaImage from '@/assets/img/stores/occhialeria.gif';
 import ryziImage from '@/assets/img/stores/ryzi.gif';
+import smImage from '@/assets/img/stores/sm.gif';
 import tecfagImage from '@/assets/img/stores/tecfag.gif';
 import { ItemsListProps } from './itemsList.interface';
 
@@ -356,6 +357,14 @@ export const projects = [
 ]
 
 export const ecommerceProjects = [
+    {
+        platform: "Shopify",
+        name: "Shopping da Multidão",
+        link: "https://www.shoppingdamultidao.com.br/",
+        imageUrl: smImage,
+        description: "Projeto de implantação"
+    },
+
     {
         platform: "VTEX IO",
         name: "Barracred",
