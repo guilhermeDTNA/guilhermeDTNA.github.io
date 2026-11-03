@@ -50,12 +50,11 @@ const SistemaKuruatuba = () => {
 
                     <section className="videoDemonstration">
                         <ReactPlayer
-                            width="450" 
-                            height="320"
-                            url={videosrc}
+                            width="100%" 
+                            height="100%"
+                            src={videosrc}
                             controls={true}
                             light={false}
-                            pip={true}
                         />
                         <source src={videosrc} type="video/mp4" />
                     </section>
